@@ -12,6 +12,8 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  const isHW10 = currentPath === PATH.HW10; // ✅
+
   const pageName =
     currentPath === PATH.PRE_JUNIOR
       ? "Pre-junior"
@@ -25,17 +27,14 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
 
   return (
     <div id={"hw5-header"} className={s.header}>
-      {/* Бургер отрисовывается только если НЕ на /hw10 */}
-      {location.pathname !== "/hw10" && (
-        <img
-          src={burgerIcon}
-          id={"hw5-burger-menu"}
-          className={s.burgerMenuIcon}
-          onClick={handleOpen}
-          alt={"open menu"}
-        />
-      )}
-
+      {/* ✅ Бургер ВСЕГДА в DOM, но скрывается через класс */}
+      <img
+        src={burgerIcon}
+        id={"hw5-burger-menu"}
+        className={`${s.burgerMenuIcon} ${isHW10 ? s.hidden : ""}`}
+        onClick={handleOpen}
+        alt={"open menu"}
+      />
       <h1>{pageName}</h1>
     </div>
   );
