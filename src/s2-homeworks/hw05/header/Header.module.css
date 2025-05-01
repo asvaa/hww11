@@ -6,7 +6,7 @@
   right: 0;
   height: 60px;
   background-color: #ffffff;
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
@@ -40,4 +40,9 @@
 
 .burgerMenuIcon:hover img {
   transform: scale(1.1);
+}
+
+/* Hides burger on HW10, but keeps in DOM */
+.hidden {
+  display: none !important;
 }

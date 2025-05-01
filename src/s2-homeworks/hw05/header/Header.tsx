@@ -11,8 +11,7 @@ type PropsType = {
 export const Header: FC<PropsType> = ({ handleOpen }) => {
   const location = useLocation();
   const currentPath = location.pathname;
-
-  const isHW10 = currentPath === PATH.HW10; // ✅
+  const isHW10 = currentPath === PATH.HW10;
 
   const pageName =
     currentPath === PATH.PRE_JUNIOR
@@ -26,14 +25,13 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
       : "Error";
 
   return (
-    <div id={"hw5-header"} className={s.header}>
-      {/* ✅ Бургер ВСЕГДА в DOM, но скрывается через класс */}
+    <div id="hw5-header" className={s.header}>
       <img
         src={burgerIcon}
-        id={"hw5-burger-menu"}
+        id="hw5-burger-menu"
         className={`${s.burgerMenuIcon} ${isHW10 ? s.hidden : ""}`}
         onClick={handleOpen}
-        alt={"open menu"}
+        alt="open menu"
       />
       <h1>{pageName}</h1>
     </div>
