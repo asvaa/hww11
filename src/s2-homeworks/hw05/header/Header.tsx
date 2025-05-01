@@ -24,7 +24,7 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
   return (
     <>
       <div id={"hw5-header"} className={s.header}>
-        {currentPath !== "/hw10" && ( // 👈 Скрываем бургер на странице HW10
+        {currentPath !== "/hw10" && ( 
           <img
             src={burgerIcon}
             id={"hw5-burger-menu"}
