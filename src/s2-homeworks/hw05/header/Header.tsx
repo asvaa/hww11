@@ -23,18 +23,18 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
 
   return (
     <>
-      <div id={"hw5-header"} className={s.header}>
-        {currentPath !== "/hw10" && ( 
-          <img
-            src={burgerIcon}
-            id={"hw5-burger-menu"}
-            className={s.burgerMenuIcon}
-            onClick={handleOpen}
-            alt={"open menu"}
-          />
-        )}
-        <h1>{pageName}</h1>
-      </div>
+      <div className={s.header}>
+    {currentPath !== PATH.HW10 && ( 
+      <img
+        src={burgerIcon}
+        id={'hw5-burger-menu'}
+        className={s.burgerMenuIcon}
+        onClick={handleOpen}
+        alt={'open menu'}
+      />
+    )}
+    <h1>{pageName}</h1>
+  </div>
     </>
   );
 };
