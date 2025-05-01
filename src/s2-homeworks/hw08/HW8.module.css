@@ -1,23 +1,56 @@
-.item {
-}
-
-.item:last-of-type {
-}
-
-.users {
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .buttonsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-.container {
+.buttonsContainer button {
+  padding: 8px 16px;
+  border: 1px solid #2563eb;
+  background-color: white;
+  color: #2563eb;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.buttonsContainer button:hover {
+  background-color: #2563eb;
+  color: white;
+}
+
+.users {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .thead {
+  background-color: #e5e5e5;
+  font-weight: 600;
 }
 
-.nameCol {
-}
-
+.nameCol,
 .ageCol {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.item {
+  transition: background-color 0.2s ease;
+}
+
+.item:hover {
+  background-color: #f9f9f9;
 }
