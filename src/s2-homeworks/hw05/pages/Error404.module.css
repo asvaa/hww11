@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 60px); 
+    background-color: #fff;
+    padding: 20px;
+}
+
+.error404 {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}

@@ -1,0 +1,43 @@
+/* Header styles */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 101;
+}
+
+.header h1 {
+  font-size: 22px;
+  color: #333;
+  margin: 0;
+}
+
+/* Burger Menu Icon */
+.burgerMenuIcon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burgerMenuIcon img {
+  width: 24px;
+  height: 24px;
+  filter: grayscale(100%) brightness(0);
+  transition: transform 0.2s ease;
+}
+
+.burgerMenuIcon:hover img {
+  transform: scale(1.1);
+}
