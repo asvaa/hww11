@@ -4,10 +4,12 @@ import React from 'react'
  import HW8 from '../../hw08/HW8'
  import HW9 from '../../hw09/HW9'
 import HW10 from '../../hw10/HW10'
+import HW5 from '../HW5'
 
 function Junior() {
     return (
         <div id={'hw5-page-junior'}>
+            <HW5/>
             <HW6 />
             <HW7 />
             <HW8 />
