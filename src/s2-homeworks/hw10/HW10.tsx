@@ -30,14 +30,14 @@ const HW10 = () => {
   const hideBurger = (
     <style>{`
         #hw5-burger-menu {
-          display: none !important;
+
         }
       `}</style>
   );
 
   return (
     <div id={"hw10"}>
-      {hideBurger} 
+      {hideBurger}
       <div className={s2.hwTitle}>Homework #10</div>
       <div className={s2.hw}>
         {isLoading ? (
