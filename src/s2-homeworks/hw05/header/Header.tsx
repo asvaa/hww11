@@ -1,3 +1,4 @@
+// Header.tsx
 import React, { FC } from "react";
 import burgerIcon from "./burger.svg";
 import s from "./Header.module.css";
@@ -10,22 +11,22 @@ type PropsType = {
 
 export const Header: FC<PropsType> = ({ handleOpen }) => {
   const location = useLocation();
-  const currentPath = location.pathname;
-  const isHW10 = currentPath === PATH.HW10;
+  const isHW10 = location.pathname === PATH.HW10;
 
   const pageName =
-    currentPath === PATH.PRE_JUNIOR
+    location.pathname === PATH.PRE_JUNIOR
       ? "Pre-junior"
-      : currentPath === PATH.JUNIOR
+      : location.pathname === PATH.JUNIOR
       ? "Junior"
-      : currentPath === PATH.JUNIOR_PLUS
+      : location.pathname === PATH.JUNIOR_PLUS
       ? "Junior Plus"
-      : currentPath === PATH.HW10
+      : location.pathname === PATH.HW10
       ? "Homework #10"
       : "Error";
 
   return (
     <div id="hw5-header" className={s.header}>
+      {/* всегда в DOM */}
       <img
         src={burgerIcon}
         id="hw5-burger-menu"
