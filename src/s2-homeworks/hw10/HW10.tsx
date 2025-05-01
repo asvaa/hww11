@@ -22,16 +22,23 @@ const HW10 = () => {
 
   const setLoading = () => {
     dispatch(loadingAC(true));
-
     setTimeout(() => {
       dispatch(loadingAC(false));
     }, 1500);
   };
 
+  const hideBurger = (
+    <style>{`
+        #hw5-burger-menu {
+          display: none !important;
+        }
+      `}</style>
+  );
+
   return (
     <div id={"hw10"}>
+      {hideBurger} 
       <div className={s2.hwTitle}>Homework #10</div>
-
       <div className={s2.hw}>
         {isLoading ? (
           <div id={"hw10-loading"}>
