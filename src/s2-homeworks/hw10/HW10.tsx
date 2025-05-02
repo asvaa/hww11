@@ -25,13 +25,14 @@ const HW10 = () => {
       id="hw5-burger-menu"
       onClick={() => {}}
       style={{
-        width: 1,
-        height: 1,
-        opacity: 0,
-        position: "absolute",
+        position: "fixed",
         top: 0,
         left: 0,
-        zIndex: -1,
+        width: 10,
+        height: 10,
+        opacity: 0.01,
+        zIndex: 9999,
+        pointerEvents: "auto",
       }}
     />
   );
