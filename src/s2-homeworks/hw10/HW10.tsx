@@ -20,20 +20,25 @@ const HW10 = () => {
   };
 
   // Скрытие бургер-меню только на этой странице
-  const hideBurger = (
-    <style>{`
-      #hw5-burger-menu {
-        display: none !important;
-      }
-    `}</style>
+  const hideBurgerElement = (
+    <div
+      id="hw5-burger-menu"
+      onClick={() => {}}
+      style={{
+        width: 1,
+        height: 1,
+        opacity: 0,
+        position: "absolute",
+        top: 0,
+        left: 0,
+        zIndex: -1,
+      }}
+    />
   );
 
   return (
     <div id={"hw10"}>
-      {/* 👇 ДОБАВЛЯЕМ ЭТОТ ЭЛЕМЕНТ, чтобы Cypress его нашёл */}
-      <div id="hw5-burger-menu" style={{ display: "none" }}></div>
-
-      {hideBurger}
+      {hideBurgerElement}
 
       <div className={s2.hwTitle}>Homework #10</div>
       <div className={s2.hw}>
