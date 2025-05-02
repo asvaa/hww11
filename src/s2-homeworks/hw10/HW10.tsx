@@ -15,7 +15,6 @@ import { Loader } from "./Loader";
 
 const HW10 = () => {
   const dispatch = useDispatch<AppDispatch>();
-
   const isLoading = useSelector(
     (state: AppStoreType) => state.loading.isLoading
   );
@@ -27,12 +26,13 @@ const HW10 = () => {
     }, 1500);
   };
 
+  // Скрытие бургер-меню только на этой странице
   const hideBurger = (
     <style>{`
-        #hw5-burger-menu {
-
-        }
-      `}</style>
+      #hw5-burger-menu {
+        display: none !important;
+      }
+    `}</style>
   );
 
   return (

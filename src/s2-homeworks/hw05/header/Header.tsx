@@ -11,7 +11,6 @@ type PropsType = {
 
 export const Header: FC<PropsType> = ({ handleOpen }) => {
   const location = useLocation();
-  const isHW10 = location.pathname === PATH.HW10;
 
   const pageName =
     location.pathname === PATH.PRE_JUNIOR
@@ -26,11 +25,10 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
 
   return (
     <div id="hw5-header" className={s.header}>
-      {/* всегда в DOM */}
       <img
         src={burgerIcon}
         id="hw5-burger-menu"
-        className={`${s.burgerMenuIcon} ${isHW10 ? s.hidden : ""}`}
+        className={s.burgerMenuIcon}
         onClick={handleOpen}
         alt="open menu"
       />
