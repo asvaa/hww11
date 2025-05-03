@@ -6,6 +6,13 @@ import SuperButton from "../hw04/common/c2-SuperButton/SuperButton";
 import s2 from "../../s1-main/App.module.css";
 import { Loader } from "./Loader";
 
+/*
+ * 1 - в файле loadingReducer.ts дописать типы и логику
+ * 2 - получить isLoading из редакса
+ * 3 - дописать функцию setLoading
+ * 4 - сделать стили в соответствии с дизайном
+ * */
+
 const HW10 = () => {
   const dispatch = useDispatch<AppDispatch>();
   const isLoading = useSelector(
@@ -20,27 +27,20 @@ const HW10 = () => {
   };
 
   // Скрытие бургер-меню только на этой странице
-  const hideBurgerElement = (
-    <div
-      id="hw5-burger-menu"
-      onClick={() => {}}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: 10,
-        height: 10,
-        opacity: 0.01,
-        zIndex: 9999,
-        pointerEvents: "auto",
-      }}
-    />
+  const hideBurger = (
+    <style>{`
+      #hw5-burger-menu {
+     opacity: 0 !important;
+      pointer-events: none !important;
+      position: absolute !important;
+      z-index: -1 !important;
+      }
+    `}</style>
   );
 
   return (
     <div id={"hw10"}>
-      {hideBurgerElement}
-
+      {hideBurger}
       <div className={s2.hwTitle}>Homework #10</div>
       <div className={s2.hw}>
         {isLoading ? (
