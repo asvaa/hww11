@@ -8,10 +8,10 @@ import { PATH } from "../Pages";
 type PropsType = {
   handleOpen: () => void;
 };
+
 export const Header: FC<PropsType> = ({ handleOpen }) => {
   const location = useLocation();
-
-  const hideBurger = location.pathname === PATH.HW10;
+  const isHW10 = location.pathname === PATH.HW10;
 
   const pageName =
     location.pathname === PATH.PRE_JUNIOR
@@ -26,15 +26,23 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
 
   return (
     <div id="hw5-header" className={s.header}>
-      {!hideBurger && (
-        <img
-          src={burgerIcon}
-          id="hw5-burger-menu"
-          className={s.burgerMenuIcon}
-          onClick={handleOpen}
-          alt="open menu"
-        />
-      )}
+      <img
+        src={burgerIcon}
+        id="hw5-burger-menu"
+        className={s.burgerMenuIcon}
+        onClick={isHW10 ? undefined : handleOpen}
+        alt="open menu"
+        style={
+          isHW10
+            ? {
+                opacity: 0,
+                pointerEvents: "none",
+                position: "absolute",
+                zIndex: -1,
+              }
+            : {}
+        }
+      />
       <h1>{pageName}</h1>
     </div>
   );
