@@ -11,7 +11,6 @@ type PropsType = {
 
 export const Header: FC<PropsType> = ({ handleOpen }) => {
   const location = useLocation();
-  const isHW10 = location.pathname === PATH.HW10;
 
   const pageName =
     location.pathname === PATH.PRE_JUNIOR
@@ -30,46 +29,10 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
         src={burgerIcon}
         id="hw5-burger-menu"
         className={s.burgerMenuIcon}
-        onClick={isHW10 ? undefined : handleOpen}
+        onClick={handleOpen}
         alt="open menu"
-        style={
-          isHW10
-            ? {
-                display: "none",
-                pointerEvents: "none",
-              }
-            : {}
-        }
       />
       <h1>{pageName}</h1>
     </div>
   );
 };
-
-// export const Header: FC<PropsType> = ({ handleOpen }) => {
-//   const location = useLocation();
-
-//   const pageName =
-//     location.pathname === PATH.PRE_JUNIOR
-//       ? "Pre-junior"
-//       : location.pathname === PATH.JUNIOR
-//       ? "Junior"
-//       : location.pathname === PATH.JUNIOR_PLUS
-//       ? "Junior Plus"
-//       : location.pathname === PATH.HW10
-//       ? "Homework #10"
-//       : "Error";
-
-//   return (
-//     <div id="hw5-header" className={s.header}>
-//       <img
-//         src={burgerIcon}
-//         id="hw5-burger-menu"
-//         className={s.burgerMenuIcon}
-//         onClick={handleOpen}
-//         alt="open menu"
-//       />
-//       <h1>{pageName}</h1>
-//     </div>
-//   );
-// };
