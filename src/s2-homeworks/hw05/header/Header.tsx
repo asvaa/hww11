@@ -35,10 +35,8 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
         style={
           isHW10
             ? {
-                opacity: 0,
+                display: "none",
                 pointerEvents: "none",
-                position: "absolute",
-                zIndex: -1,
               }
             : {}
         }
