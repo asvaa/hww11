@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import s from "./Sidebar.module.css";
 import { PATH } from "../Pages";
 import closeIcon from "./closeOutline.svg";
@@ -10,10 +10,15 @@ type PropsType = {
 };
 
 export const Sidebar: FC<PropsType> = ({ open, handleClose }) => {
+  const location = useLocation();
+  const isHW10 = location.pathname === PATH.HW10;
+
+  if (isHW10) return null; // 👈 полностью скрываем Sidebar на странице HW10
+
   const sidebarClass = s.sidebar + (open ? " " + s.open : "");
+
   return (
     <>
-      {/*затемнение справа от открытого меню*/}
       {open && <div className={s.background} onClick={handleClose} />}
 
       <aside className={sidebarClass}>

@@ -30,10 +30,6 @@ const HW10 = () => {
   const hideBurger = (
     <style>{`
       #hw5-burger-menu {
-     opacity: 0 !important;
-      pointer-events: none !important;
-      position: absolute !important;
-      z-index: -1 !important;
       }
     `}</style>
   );
