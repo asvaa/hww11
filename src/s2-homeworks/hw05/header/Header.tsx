@@ -7,9 +7,11 @@ import { PATH } from "../Pages";
 
 type PropsType = {
   handleOpen: () => void;
+  handleClose: () => void;
+  open: boolean
 };
 
-export const Header: FC<PropsType> = ({ handleOpen }) => {
+export const Header: FC<PropsType> = ({ handleOpen, open, handleClose }) => {
   const location = useLocation();
 
   const pageName =
@@ -29,7 +31,7 @@ export const Header: FC<PropsType> = ({ handleOpen }) => {
         src={burgerIcon}
         id="hw5-burger-menu"
         className={s.burgerMenuIcon}
-        onClick={handleOpen}
+        onClick={open ? handleClose :  handleOpen}
         alt="open menu"
       />
       <h1>{pageName}</h1>
