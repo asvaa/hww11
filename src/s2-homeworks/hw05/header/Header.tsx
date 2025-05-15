@@ -1,4 +1,3 @@
-// Header.tsx
 import React, { FC } from "react";
 import burgerIcon from "./burger.svg";
 import s from "./Header.module.css";
@@ -8,10 +7,16 @@ import { PATH } from "../Pages";
 type PropsType = {
   handleOpen: () => void;
   handleClose: () => void;
-  open: boolean
+  open: boolean;
+  hideBurger?: boolean;
 };
 
-export const Header: FC<PropsType> = ({ handleOpen, open, handleClose }) => {
+export const Header: FC<PropsType> = ({
+  handleOpen,
+  open,
+  handleClose,
+  hideBurger = false,
+}) => {
   const location = useLocation();
 
   const pageName =
@@ -27,13 +32,15 @@ export const Header: FC<PropsType> = ({ handleOpen, open, handleClose }) => {
 
   return (
     <div id="hw5-header" className={s.header}>
-      <img
-        src={burgerIcon}
-        id="hw5-burger-menu"
-        className={s.burgerMenuIcon}
-        onClick={open ? handleClose :  handleOpen}
-        alt="open menu"
-      />
+      {!hideBurger && (
+        <img
+          src={burgerIcon}
+          id="hw5-burger-menu"
+          className={s.burgerMenuIcon}
+          onClick={open ? handleClose : handleOpen}
+          alt="open menu"
+        />
+      )}
       <h1>{pageName}</h1>
     </div>
   );
