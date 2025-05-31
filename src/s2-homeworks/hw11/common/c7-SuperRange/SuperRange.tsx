@@ -1,10 +1,10 @@
 import React from "react";
 import { Slider, SliderProps } from "@mui/material";
 
-const SuperRange: React.FC<SliderProps> = ({ ...rest }) => {
+const SuperRange: React.FC<SliderProps> = (props) => {
   return (
     <Slider
-      aria-label="SuperRange"
+      aria-label={props["aria-label"] || "SuperRange"} 
       sx={{
         width: "100%",
         maxWidth: 375,
@@ -28,7 +28,7 @@ const SuperRange: React.FC<SliderProps> = ({ ...rest }) => {
           backgroundColor: "#bfbfbf",
         },
       }}
-      {...rest}
+      {...props}
     />
   );
 };

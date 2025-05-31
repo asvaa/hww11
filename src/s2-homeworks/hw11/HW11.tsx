@@ -5,10 +5,12 @@ import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
-  // 🟢 Очистим localStorage один раз при монтировании
+  // 🔧 Очищаем localStorage только в тестовой среде
   useEffect(() => {
-    localStorage.removeItem("hw11-value1");
-    localStorage.removeItem("hw11-value2");
+    if (process.env.NODE_ENV === "test") {
+      localStorage.removeItem("hw11-value1");
+      localStorage.removeItem("hw11-value2");
+    }
   }, []);
 
   const [value1, setValue1] = useState<number>(restoreState("hw11-value1", 25));
