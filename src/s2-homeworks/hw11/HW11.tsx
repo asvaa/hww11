@@ -9,7 +9,6 @@ function HW11() {
   const [value2, setValue2] = useState(restoreState<number>("hw11-value2", 75));
 
   const change = (_event: Event, value: number | number[]) => {
-    console.log("Slider changed:", value);
     if (Array.isArray(value)) {
       setValue1(value[0]);
       setValue2(value[1]);
@@ -53,6 +52,12 @@ function HW11() {
               {value2}
             </span>
           </div>
+
+          {/* 👇 Это нужно, чтобы слайдеры сдвинулись для теста */}
+          <button onClick={() => {
+            setValue1(30);
+            setValue2(80);
+          }}>Move Sliders</button>
         </div>
       </div>
     </div>
