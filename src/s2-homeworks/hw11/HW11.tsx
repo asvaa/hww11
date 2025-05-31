@@ -5,15 +5,16 @@ import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
+  const [value1, setValue1] = useState<number>(restoreState("hw11-value1", 25));
+  const [value2, setValue2] = useState<number>(restoreState("hw11-value2", 75));
+
+  // Удалим значения из localStorage в тестовой среде
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
       localStorage.removeItem("hw11-value2");
     }
   }, []);
-
-  const [value1, setValue1] = useState<number>(restoreState("hw11-value1", 25));
-  const [value2, setValue2] = useState<number>(restoreState("hw11-value2", 75));
 
   const change = (_event: Event | unknown, value: number | number[]) => {
     if (Array.isArray(value)) {
@@ -27,7 +28,6 @@ function HW11() {
   return (
     <div id="hw11">
       <div className={s2.hwTitle}>Homework #11</div>
-
       <div className={s2.hw}>
         <div className={s.container}>
           {/* Одиночный слайдер */}
@@ -63,7 +63,7 @@ function HW11() {
             </span>
           </div>
 
-          {/* Кнопка для сдвига правого ползунка */}
+          {/* Кнопка изменения value2 */}
           <button
             id="move-double-slider"
             onClick={() => {
