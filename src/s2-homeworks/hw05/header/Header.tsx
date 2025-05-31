@@ -15,7 +15,7 @@ export const Header: FC<PropsType> = ({
   handleOpen,
   open,
   handleClose,
-  hideBurger = false,
+  hideBurger,
 }) => {
   const location = useLocation();
 
@@ -30,9 +30,12 @@ export const Header: FC<PropsType> = ({
       ? "Homework #10"
       : "Error";
 
+  const shouldHideBurger =
+    hideBurger !== undefined ? hideBurger : location.pathname === PATH.HW10;
+
   return (
     <div id="hw5-header" className={s.header}>
-      {!hideBurger && (
+      {!shouldHideBurger && (
         <img
           src={burgerIcon}
           id="hw5-burger-menu"
