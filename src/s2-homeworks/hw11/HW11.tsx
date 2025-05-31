@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./HW11.module.css";
 import s2 from "../../s1-main/App.module.css";
 import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
-  // ✅ Чтение сохраненных значений с локального хранилища
+  // 🟢 Очистим localStorage один раз при монтировании
+  useEffect(() => {
+    localStorage.removeItem("hw11-value1");
+    localStorage.removeItem("hw11-value2");
+  }, []);
+
   const [value1, setValue1] = useState<number>(restoreState("hw11-value1", 25));
   const [value2, setValue2] = useState<number>(restoreState("hw11-value2", 75));
 
-  // ✅ Типизируем _event как React.ChangeEvent<{}> или просто `unknown`, если не используем
   const change = (_event: Event | unknown, value: number | number[]) => {
     if (Array.isArray(value)) {
       setValue1(value[0]);
@@ -62,7 +66,7 @@ function HW11() {
           <button
             id="move-double-slider"
             onClick={() => {
-              setValue2((prev) => Math.max(prev - 10, value1)); // ✅ защищаем от пересечения с value1
+              setValue2((prev) => Math.max(prev - 10, value1));
             }}
           >
             Move Right Slider Left
