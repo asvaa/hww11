@@ -54,10 +54,14 @@ function HW11() {
           </div>
 
           {/* 👇 Это нужно, чтобы слайдеры сдвинулись для теста */}
-          <button onClick={() => {
-            setValue1(30);
-            setValue2(80);
-          }}>Move Sliders</button>
+          <button
+            id="move-double-slider"
+            onClick={() => {
+              setValue2((prev) => prev - 10);
+            }}
+          >
+            Move Right Slider Left
+          </button>
         </div>
       </div>
     </div>
