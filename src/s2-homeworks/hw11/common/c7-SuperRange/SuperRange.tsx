@@ -4,8 +4,10 @@ import { Slider, SliderProps } from "@mui/material";
 const SuperRange: React.FC<SliderProps> = (props) => {
   return (
     <Slider
+      aria-label="SuperRange"
       sx={{
-        width: 375, // 👈 ФИКС ширины — ключ к корректному `left`
+        width: "100%",
+        maxWidth: 375, // ✅ адаптивная ширина
         height: 4,
         color: "#52af77",
         "& .MuiSlider-thumb": {
