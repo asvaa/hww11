@@ -11,9 +11,9 @@ type PropsType = {
 
 export const Sidebar: FC<PropsType> = ({ open, handleClose }) => {
   const location = useLocation();
-  const isHW10 = location.pathname === PATH.HW10;
+  const isSidebarHidden = [PATH.HW10].includes(location.pathname);
 
-  if (isHW10) return null; // 👈 полностью скрываем Sidebar на странице HW10
+  if (isSidebarHidden) return null;
 
   const sidebarClass = s.sidebar + (open ? " " + s.open : "");
 
