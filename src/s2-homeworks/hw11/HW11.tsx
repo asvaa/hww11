@@ -5,7 +5,6 @@ import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
-
   const [valueSingle, setValueSingle] = useState<number>(
     restoreState("hw11-value1", 0)
   );
@@ -28,7 +27,6 @@ function HW11() {
   ) => {
     if (typeof val === "number") {
       setValueSingle(val);
-      setValueDouble(([_, right]) => [val, right]);
     }
   };
 
@@ -38,7 +36,6 @@ function HW11() {
   ) => {
     if (Array.isArray(val)) {
       setValueDouble([val[0], val[1]]);
-      setValueSingle(val[0]);
     }
   };
 
