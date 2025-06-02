@@ -1,11 +1,25 @@
 import React from "react";
-import { Slider, SliderProps } from "@mui/material";
+import Slider from "@mui/material/Slider";
+import type { SliderProps } from "@mui/material";
 
-const SuperRange: React.FC<SliderProps> = (props) => {
+const SuperRange: React.FC<SliderProps> = ({
+  id,
+  value,
+  onChange,
+  onChangeCommitted,
+  ...rest
+}) => {
+  const isSingle = id === "hw11-single-slider";
+
   return (
     <Slider
+      id={id}
+      value={value}
+      onChange={onChange}
+      onChangeCommitted={onChangeCommitted}
+      data-testid={id || "super-range"} // ✅ для Cypress
       sx={{
-        width: 300, // 👈 ФИКС ширины — ключ к корректному `left`
+        width: 300, // ✅ Фиксированная ширина (обязательно!)
         height: 4,
         color: "#52af77",
         "& .MuiSlider-thumb": {
@@ -20,13 +34,14 @@ const SuperRange: React.FC<SliderProps> = (props) => {
         },
         "& .MuiSlider-track": {
           border: "none",
+          backgroundColor: "#52af77", // ✅ трек (зелёная линия)
         },
         "& .MuiSlider-rail": {
           opacity: 1,
           backgroundColor: "#bfbfbf",
         },
       }}
-      {...props}
+      {...rest}
     />
   );
 };

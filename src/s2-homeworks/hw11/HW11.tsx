@@ -5,28 +5,34 @@ import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
-  const [value1, setValue1] = useState<number>(restoreState("hw11-value1", 50));
-  const [value2, setValue2] = useState<number>(restoreState("hw11-value2", 80));
+  const [valueSingle, setValueSingle] = useState<number>(
+    restoreState("hw11-value1", 50)
+  );
+  const [valueDouble, setValueDouble] = useState<[number, number]>(
+    restoreState("hw11-value2", [50, 80])
+  );
 
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
       localStorage.removeItem("hw11-value2");
-      setValue1(50);
-      setValue2(80);
+      setValueSingle(50);
+      setValueDouble([50, 80]);
     }
   }, []);
 
-  const change = (
-    _event: Event | React.SyntheticEvent,
-    value: number | number[]
+  const changeSingle = (
+    _e: Event | React.SyntheticEvent,
+    val: number | number[]
   ) => {
-    if (Array.isArray(value)) {
-      setValue1(value[0]);
-      setValue2(value[1]);
-    } else {
-      setValue1(value);
-    }
+    if (typeof val === "number") setValueSingle(val);
+  };
+
+  const changeDouble = (
+    _e: Event | React.SyntheticEvent,
+    val: number | number[]
+  ) => {
+    if (Array.isArray(val)) setValueDouble([val[0], val[1]]);
   };
 
   return (
@@ -37,13 +43,13 @@ function HW11() {
           {/* Одиночный слайдер */}
           <div className={s.wrapper}>
             <span id="hw11-value" data-testid="value1" className={s.number}>
-              {value1}
+              {valueSingle}
             </span>
             <SuperRange
               id="hw11-single-slider"
-              value={value1}
-              onChange={change}
-              onChangeCommitted={change}
+              value={valueSingle}
+              onChange={changeSingle}
+              onChangeCommitted={changeSingle}
               min={0}
               max={100}
               step={1}
@@ -57,19 +63,19 @@ function HW11() {
               data-testid="value1-double"
               className={s.number}
             >
-              {value1}
+              {valueDouble[0]}
             </span>
             <SuperRange
               id="hw11-double-slider"
-              value={[value1, value2]}
-              onChange={change}
-              onChangeCommitted={change}
+              value={valueDouble}
+              onChange={changeDouble}
+              onChangeCommitted={changeDouble}
               min={0}
               max={100}
               step={1}
             />
             <span id="hw11-value-2" data-testid="value2" className={s.number}>
-              {value2}
+              {valueDouble[1]}
             </span>
           </div>
 
@@ -77,7 +83,10 @@ function HW11() {
             data-testid="move-button"
             id="move-double-slider"
             onClick={() => {
-              setValue2((prev) => Math.max(value1 + 1, prev - 10));
+              setValueDouble(([left, right]) => [
+                left,
+                Math.max(left + 1, right - 10),
+              ]);
             }}
           >
             Move Right Slider Left

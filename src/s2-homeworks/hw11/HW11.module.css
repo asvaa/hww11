@@ -12,8 +12,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  width: 100%;
-  max-width: 375px;
+  width: 300px; /* ✅ УСТАНОВЛЕНА ЯВНАЯ ширина (соответствует Slider) */
   box-sizing: border-box;
 }
 
