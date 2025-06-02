@@ -5,19 +5,20 @@ import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
+
   const [valueSingle, setValueSingle] = useState<number>(
-    restoreState("hw11-value1", 50)
+    restoreState("hw11-value1", 0)
   );
   const [valueDouble, setValueDouble] = useState<[number, number]>(
-    restoreState("hw11-value2", [50, 80])
+    restoreState("hw11-value2", [0, 100])
   );
 
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
       localStorage.removeItem("hw11-value2");
-      setValueSingle(50);
-      setValueDouble([50, 80]);
+      setValueSingle(0);
+      setValueDouble([0, 100]);
     }
   }, []);
 
@@ -43,7 +44,7 @@ function HW11() {
 
   return (
     <div data-testid="hw11">
-      <div className={s2.hwTitle}>Homework #11</div>
+      <div className={s2.hwTitle}>Hometask № 11</div>
       <div className={s2.hw}>
         <div className={s.container}>
           {/* Одиночный слайдер */}
@@ -84,20 +85,6 @@ function HW11() {
               {valueDouble[1]}
             </span>
           </div>
-
-          {/* Кнопка перемещения правого маркера влево */}
-          <button
-            data-testid="move-button"
-            id="move-double-slider"
-            onClick={() => {
-              setValueDouble(([left, right]) => [
-                left,
-                Math.max(left + 1, right - 1),
-              ]);
-            }}
-          >
-            Move Right Slider Left
-          </button>
         </div>
       </div>
     </div>
