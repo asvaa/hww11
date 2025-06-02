@@ -8,11 +8,12 @@ function HW11() {
   const [value1, setValue1] = useState<number>(restoreState("hw11-value1", 25));
   const [value2, setValue2] = useState<number>(restoreState("hw11-value2", 75));
 
-  // Удалим значения из localStorage в тестовой среде
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
       localStorage.removeItem("hw11-value2");
+      setValue1(25);
+      setValue2(75);
     }
   }, []);
 
@@ -26,17 +27,16 @@ function HW11() {
   };
 
   return (
-    <div id="hw11">
+    <div data-testid="hw11">
       <div className={s2.hwTitle}>Homework #11</div>
       <div className={s2.hw}>
         <div className={s.container}>
           {/* Одиночный слайдер */}
           <div className={s.wrapper}>
-            <span id="hw11-value" className={s.number}>
+            <span data-testid="value1" className={s.number}>
               {value1}
             </span>
             <SuperRange
-              id="hw11-single-slider"
               value={value1}
               onChange={change}
               min={0}
@@ -47,27 +47,25 @@ function HW11() {
 
           {/* Двойной слайдер */}
           <div className={s.wrapper}>
-            <span id="hw11-value-1" className={s.number}>
+            <span data-testid="value1-double" className={s.number}>
               {value1}
             </span>
             <SuperRange
-              id="hw11-double-slider"
               value={[value1, value2]}
               onChange={change}
               min={0}
               max={100}
               step={1}
             />
-            <span id="hw11-value-2" className={s.number}>
+            <span data-testid="value2" className={s.number}>
               {value2}
             </span>
           </div>
 
-          {/* Кнопка изменения value2 */}
           <button
-            id="move-double-slider"
+            data-testid="move-button"
             onClick={() => {
-              setValue2((prev) => Math.max(prev - 10, value1));
+              setValue2((prev) => prev - 10); 
             }}
           >
             Move Right Slider Left

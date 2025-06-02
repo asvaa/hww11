@@ -8,6 +8,7 @@ const SuperRange: React.FC<SliderProps> = ({
   return (
     <Slider
       aria-label={ariaLabel}
+      data-testid={rest.id || "super-range"}
       sx={{
         width: "100%",
         maxWidth: 375,
