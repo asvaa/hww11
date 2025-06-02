@@ -17,7 +17,10 @@ function HW11() {
     }
   }, []);
 
-  const change = (_event: Event | unknown, value: number | number[]) => {
+  const change = (
+    _event: Event | React.SyntheticEvent,
+    value: number | number[]
+  ) => {
     if (Array.isArray(value)) {
       setValue1(value[0]);
       setValue2(value[1]);
@@ -31,7 +34,6 @@ function HW11() {
       <div className={s2.hwTitle}>Homework #11</div>
       <div className={s2.hw}>
         <div className={s.container}>
-
           {/* Одиночный слайдер */}
           <div className={s.wrapper}>
             <span id="hw11-value" data-testid="value1" className={s.number}>
@@ -41,6 +43,7 @@ function HW11() {
               id="hw11-single-slider"
               value={value1}
               onChange={change}
+              onChangeCommitted={change} // ✅ добавлено
               min={0}
               max={100}
               step={1}
@@ -49,13 +52,18 @@ function HW11() {
 
           {/* Двойной слайдер */}
           <div className={s.wrapper}>
-            <span id="hw11-value-1" data-testid="value1-double" className={s.number}>
+            <span
+              id="hw11-value-1"
+              data-testid="value1-double"
+              className={s.number}
+            >
               {value1}
             </span>
             <SuperRange
               id="hw11-double-slider"
               value={[value1, value2]}
               onChange={change}
+              onChangeCommitted={change} // ✅ добавлено
               min={0}
               max={100}
               step={1}
