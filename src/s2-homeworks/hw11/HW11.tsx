@@ -21,9 +21,6 @@ function HW11() {
     }
   }, []);
 
-  // НЕ синхронизируем через useEffect
-
-  // Одиночный слайдер: двигает и себя, и первый маркер double
   const changeSingle = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -34,7 +31,6 @@ function HW11() {
     }
   };
 
-  // Двойной слайдер: двигает и double, и одиночный слайдер
   const changeDouble = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -83,7 +79,6 @@ function HW11() {
               min={0}
               max={100}
               step={1}
-              // убери minDistance, если TS не позволяет!
             />
             <span id="hw11-value-2" data-testid="value2" className={s.number}>
               {valueDouble[1]}
