@@ -19,7 +19,7 @@ const SuperRange: React.FC<SliderProps> = ({
       onChangeCommitted={onChangeCommitted}
       data-testid={id || "super-range"}
       classes={{
-        thumb: isSingle ? "thumb-single" : "thumb-double",
+        thumb: id === "hw11-single-slider" ? "thumb-single" : "thumb-double",
       }}
       sx={{
         width: 300,
