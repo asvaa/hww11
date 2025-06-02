@@ -12,6 +12,7 @@ function HW11() {
     restoreState("hw11-value2", [50, 80])
   );
 
+  // Сброс при тестировании
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -20,6 +21,11 @@ function HW11() {
       setValueDouble([50, 80]);
     }
   }, []);
+
+  // Синхронизация одиночного слайдера с первым маркером двойного
+  useEffect(() => {
+    setValueSingle(valueDouble[0]);
+  }, [valueDouble[0]]);
 
   const changeSingle = (
     _e: Event | React.SyntheticEvent,
@@ -79,14 +85,15 @@ function HW11() {
             </span>
           </div>
 
+          {/* Кнопка перемещения правого маркера влево */}
           <button
             data-testid="move-button"
             id="move-double-slider"
             onClick={() => {
-              setValueDouble(([left, right]) => [
-                left,
-                Math.max(left + 1, right - 10),
-              ]);
+              setValueDouble(([left, right]) => {
+                const newRight = right > left + 1 ? right - 1 : right;
+                return [left, newRight];
+              });
             }}
           >
             Move Right Slider Left
