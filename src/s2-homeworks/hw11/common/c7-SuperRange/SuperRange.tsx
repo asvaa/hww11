@@ -17,9 +17,12 @@ const SuperRange: React.FC<SliderProps> = ({
       value={value}
       onChange={onChange}
       onChangeCommitted={onChangeCommitted}
-      data-testid={id || "super-range"} // ✅ для Cypress
+      data-testid={id || "super-range"}
+      classes={{
+        thumb: isSingle ? "thumb-single" : "thumb-double",
+      }}
       sx={{
-        width: 300, // ✅ Фиксированная ширина (обязательно!)
+        width: 300,
         height: 4,
         color: "#52af77",
         "& .MuiSlider-thumb": {
@@ -34,7 +37,7 @@ const SuperRange: React.FC<SliderProps> = ({
         },
         "& .MuiSlider-track": {
           border: "none",
-          backgroundColor: "#52af77", // ✅ трек (зелёная линия)
+          backgroundColor: "#52af77",
         },
         "& .MuiSlider-rail": {
           opacity: 1,
