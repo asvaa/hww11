@@ -12,7 +12,6 @@ function HW11() {
     restoreState("hw11-value2", [50, 80])
   );
 
-  // Сброс при тестировании
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -79,6 +78,7 @@ function HW11() {
               min={0}
               max={100}
               step={1}
+              minDistance={1}
             />
             <span id="hw11-value-2" data-testid="value2" className={s.number}>
               {valueDouble[1]}
@@ -90,10 +90,7 @@ function HW11() {
             data-testid="move-button"
             id="move-double-slider"
             onClick={() => {
-              setValueDouble(([left, right]) => {
-                const newRight = right > left + 1 ? right - 1 : right;
-                return [left, newRight];
-              });
+              setValueDouble(([left, right]) => [left, right - 1]);
             }}
           >
             Move Right Slider Left
