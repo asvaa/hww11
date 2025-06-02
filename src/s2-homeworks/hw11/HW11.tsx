@@ -5,15 +5,15 @@ import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
-  const [value1, setValue1] = useState<number>(restoreState("hw11-value1", 25));
-  const [value2, setValue2] = useState<number>(restoreState("hw11-value2", 75));
+  const [value1, setValue1] = useState<number>(restoreState("hw11-value1", 50));
+  const [value2, setValue2] = useState<number>(restoreState("hw11-value2", 80));
 
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
       localStorage.removeItem("hw11-value2");
-      setValue1(25);
-      setValue2(75);
+      setValue1(50);
+      setValue2(80);
     }
   }, []);
 
@@ -43,7 +43,8 @@ function HW11() {
               id="hw11-single-slider"
               value={value1}
               onChange={change}
-              onChangeCommitted={change} 
+              onChangeCommitted={change}
+              min={0}
               max={100}
               step={1}
             />
@@ -62,7 +63,7 @@ function HW11() {
               id="hw11-double-slider"
               value={[value1, value2]}
               onChange={change}
-              onChangeCommitted={change} 
+              onChangeCommitted={change}
               min={0}
               max={100}
               step={1}
@@ -76,7 +77,7 @@ function HW11() {
             data-testid="move-button"
             id="move-double-slider"
             onClick={() => {
-              setValue2((prev) => prev - 10);
+              setValue2((prev) => Math.max(value1 + 1, prev - 10));
             }}
           >
             Move Right Slider Left
