@@ -28,6 +28,9 @@ const SuperRange: React.FC<SliderProps> = ({
         width: "100%",
         maxWidth: 375,
         height: 4,
+        padding: 0,
+        margin: 0,
+        boxSizing: "border-box",
         color: "#52af77",
         "& .MuiSlider-thumb": {
           height: 20,

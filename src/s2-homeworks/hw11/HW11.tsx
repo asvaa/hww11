@@ -43,8 +43,7 @@ function HW11() {
               id="hw11-single-slider"
               value={value1}
               onChange={change}
-              onChangeCommitted={change} // ✅ добавлено
-              min={0}
+              onChangeCommitted={change} 
               max={100}
               step={1}
             />
@@ -63,7 +62,7 @@ function HW11() {
               id="hw11-double-slider"
               value={[value1, value2]}
               onChange={change}
-              onChangeCommitted={change} // ✅ добавлено
+              onChangeCommitted={change} 
               min={0}
               max={100}
               step={1}
