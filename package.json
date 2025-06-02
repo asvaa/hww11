@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "cypress-real-events": "^1.14.0",
     "gh-pages": "^6.3.0"
   }
 }

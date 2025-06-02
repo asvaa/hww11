@@ -1,20 +1,29 @@
 import React from "react";
-import { Slider, SliderProps } from "@mui/material";
+import Slider from "@mui/material/Slider";
+import type { SliderProps } from "@mui/material/Slider";
 
 const SuperRange: React.FC<SliderProps> = ({
+  id,
   "aria-label": ariaLabel = "SuperRange",
   onChange,
   onChangeCommitted,
   ...rest
 }) => {
+  const isSingle = id === "hw11-single-slider";
+
   return (
     <Slider
       {...rest}
+      id={id}
       aria-label={ariaLabel}
-      data-testid={rest.id || "super-range"}
       value={rest.value}
       onChange={onChange}
       onChangeCommitted={onChangeCommitted}
+      componentsProps={{
+        thumb: {
+          className: isSingle ? "thumb-single" : "thumb-double",
+        },
+      }}
       sx={{
         width: "100%",
         maxWidth: 375,
