@@ -33,7 +33,7 @@ function HW11() {
         <div className={s.container}>
           {/* Одиночный слайдер */}
           <div className={s.wrapper}>
-            <span data-testid="value1" className={s.number}>
+            <span id="hw11-value" data-testid="value1" className={s.number}>
               {value1}
             </span>
             <SuperRange
@@ -44,7 +44,17 @@ function HW11() {
               max={100}
               step={1}
             />
+          </div>
 
+          {/* Двойной слайдер */}
+          <div className={s.wrapper}>
+            <span
+              id="hw11-value-1"
+              data-testid="value1-double"
+              className={s.number}
+            >
+              {value1}
+            </span>
             <SuperRange
               id="hw11-double-slider"
               value={[value1, value2]}
@@ -53,14 +63,14 @@ function HW11() {
               max={100}
               step={1}
             />
-
-            <span data-testid="value2" className={s.number}>
+            <span id="hw11-value-2" data-testid="value2" className={s.number}>
               {value2}
             </span>
           </div>
 
           <button
             data-testid="move-button"
+            id="move-double-slider"
             onClick={() => {
               setValue2((prev) => prev - 10);
             }}
