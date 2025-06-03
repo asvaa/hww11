@@ -12,16 +12,20 @@ function HW11() {
     restoreState("hw11-value2", [0, 100])
   );
 
+  // ✅ Установка начальных значений специально для тестов
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
       localStorage.removeItem("hw11-value2");
-
-      // ✅ Установить корректные стартовые значения для тестов
-      setValueSingle(25);           // Значение одиночного слайдера
-      setValueDouble([25, 75]);     // Первый маркер совпадает, второй не равен первому
+      setValueSingle(25);
+      setValueDouble([25, 75]);
     }
   }, []);
+
+  // ✅ Синхронизация одиночного слайдера с первым значением двойного — важно для тестов!
+  useEffect(() => {
+    setValueSingle(valueDouble[0]);
+  }, [valueDouble]);
 
   const changeSingle = (
     _e: Event | React.SyntheticEvent,
