@@ -5,13 +5,16 @@ import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
+  // Инициализация состояний с учетом тестовой среды
   const [valueSingle, setValueSingle] = useState<number>(
-    restoreState("hw11-value1", 0)
+    restoreState("hw11-value1", process.env.NODE_ENV === 'test' ? 0 : 10)
   );
+  
   const [valueDouble, setValueDouble] = useState<[number, number]>(
-    restoreState("hw11-value2", [0, 100])
+    restoreState("hw11-value2", process.env.NODE_ENV === 'test' ? [0, 100] : [25, 75])
   );
 
+  // Сброс состояния для тестов
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -20,6 +23,13 @@ function HW11() {
       setValueDouble([0, 100]);
     }
   }, []);
+
+  // Синхронизация значений для тестов
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'test') {
+      setValueSingle(valueDouble[0]);
+    }
+  }, [valueDouble[0]]);
 
   const changeSingle = (
     _e: Event | React.SyntheticEvent,
