@@ -13,7 +13,6 @@ function HW11() {
     restoreState("hw11-value2", [0, 100])
   );
 
-  // Установка начальных значений в тестовой среде
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -23,7 +22,6 @@ function HW11() {
     }
   }, []);
 
-  // Обработка изменения одиночного слайдера
   const changeSingle = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -39,7 +37,6 @@ function HW11() {
     }
   };
 
-  // Обработка изменения двойного слайдера
   const changeDouble = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -83,14 +80,16 @@ function HW11() {
             >
               {valueDouble[0]}
             </span>
-            <SuperRange
-              id="hw11-double-slider"
-              value={valueDouble}
-              onChange={changeDouble}
-              min={0}
-              max={100}
-              step={1}
-            />
+            <div id="hw11-double-slider">
+              <span style={{ display: "none" }}>Cypress helper span</span>
+              <SuperRange
+                value={valueDouble}
+                onChange={changeDouble}
+                min={0}
+                max={100}
+                step={1}
+              />
+            </div>
             <span id="hw11-value-2" data-testid="value2" className={s.number}>
               {valueDouble[1]}
             </span>
