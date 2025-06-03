@@ -7,6 +7,7 @@ const SuperRange: React.FC<SliderProps> = (props) => {
     <Slider
       {...props}
       data-testid={props.id || "super-range"}
+      // 👇 Это ключ к работе с Cypress — явно прокидываем data-testid в "thumb"
       slotProps={{
         thumb: {
           ...((props.id && {
