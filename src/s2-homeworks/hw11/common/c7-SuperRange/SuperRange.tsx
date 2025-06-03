@@ -6,14 +6,14 @@ const SuperRange: React.FC<SliderProps> = (props) => {
   return (
     <Slider
       {...props}
+      data-testid={props.id || "super-range"}
       slotProps={{
         thumb: {
-          ...(props.id && {
-            'data-testid': `${props.id}-thumb`,
-          }),
+          ...((props.id && {
+            "data-testid": `${props.id}-thumb`,
+          }) as any),
         },
       }}
-      data-testid={props.id || "super-range"}
       sx={{
         width: 300,
         height: 4,
