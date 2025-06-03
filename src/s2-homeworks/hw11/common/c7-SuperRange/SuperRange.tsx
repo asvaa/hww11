@@ -3,17 +3,16 @@ import Slider from "@mui/material/Slider";
 import type { SliderProps } from "@mui/material";
 
 const SuperRange: React.FC<SliderProps> = (props) => {
+  const { id, ...restProps } = props;
+
   return (
     <Slider
-      {...props}
-      data-testid={props.id || "super-range"}
-      // 👇 Это ключ к работе с Cypress — явно прокидываем data-testid в "thumb"
+      {...restProps}
+      data-testid={id || "super-range"}
       slotProps={{
-        thumb: {
-          ...((props.id && {
-            "data-testid": `${props.id}-thumb`,
-          }) as any),
-        },
+        thumb: (index) => ({
+          "data-testid": `${id || "super-range"}-thumb-${index}`,
+        }),
       }}
       sx={{
         width: 300,
