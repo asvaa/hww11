@@ -29,7 +29,7 @@ function HW11() {
     val: number | number[]
   ) => {
     if (typeof val === "number") {
-      setValueSingle(val); // обновить значение одиночного
+      setValueSingle(val);
       setValueDouble(([_, second]) => {
         const newDouble: [number, number] = [val, second];
         saveState("hw11-value1", val);
@@ -46,7 +46,7 @@ function HW11() {
   ) => {
     if (Array.isArray(val)) {
       setValueDouble(val as [number, number]);
-      setValueSingle(val[0]); // синхронизировать с первым значением
+      setValueSingle(val[0]);
       saveState("hw11-value1", val[0]);
       saveState("hw11-value2", val);
     }
@@ -62,14 +62,16 @@ function HW11() {
             <span id="hw11-value" data-testid="value1" className={s.number}>
               {valueSingle}
             </span>
-            <SuperRange
-              id="hw11-single-slider"
-              value={valueSingle}
-              onChange={changeSingle}
-              min={0}
-              max={100}
-              step={1}
-            />
+            <div id="hw11-single-slider">
+              <span style={{ display: "none" }}>Cypress helper span</span>
+              <SuperRange
+                value={valueSingle}
+                onChange={changeSingle}
+                min={0}
+                max={100}
+                step={1}
+              />
+            </div>
           </div>
 
           {/* Двойной слайдер */}
