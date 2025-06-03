@@ -1,5 +1,6 @@
 import React from "react";
-import Slider, { SliderProps } from "@mui/material/Slider";
+import Slider from "@mui/material/Slider";
+import type { SliderProps } from "@mui/material";
 
 const SuperRange: React.FC<SliderProps> = (props) => {
   return (
@@ -19,9 +20,6 @@ const SuperRange: React.FC<SliderProps> = (props) => {
           "&:hover, &.Mui-focusVisible, &.Mui-active": {
             boxShadow: "none",
           },
-          "&[data-testid]::before": {
-            content: '""',
-          },
         },
         "& .MuiSlider-track": {
           border: "none",
@@ -31,11 +29,6 @@ const SuperRange: React.FC<SliderProps> = (props) => {
           opacity: 1,
           backgroundColor: "#bfbfbf",
         },
-      }}
-      componentsProps={{
-        thumb: {
-          "data-testid": props.id ? `${props.id}-thumb` : "super-range-thumb",
-        } as React.HTMLAttributes<HTMLSpanElement>,
       }}
     />
   );
