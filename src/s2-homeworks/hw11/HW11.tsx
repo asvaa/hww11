@@ -16,8 +16,10 @@ function HW11() {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
       localStorage.removeItem("hw11-value2");
-      setValueSingle(0);
-      setValueDouble([0, 100]);
+
+      // ✅ Установить корректные стартовые значения для тестов
+      setValueSingle(25);           // Значение одиночного слайдера
+      setValueDouble([25, 75]);     // Первый маркер совпадает, второй не равен первому
     }
   }, []);
 
