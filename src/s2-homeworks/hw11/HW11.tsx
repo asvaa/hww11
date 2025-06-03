@@ -12,7 +12,6 @@ function HW11() {
     restoreState("hw11-value2", [0, 100])
   );
 
-  // ✅ Установка начальных значений специально для тестов
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -22,17 +21,13 @@ function HW11() {
     }
   }, []);
 
-  // ✅ Синхронизация одиночного слайдера с первым значением двойного — важно для тестов!
-  useEffect(() => {
-    setValueSingle(valueDouble[0]);
-  }, [valueDouble]);
-
   const changeSingle = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
   ) => {
     if (typeof val === "number") {
       setValueSingle(val);
+      setValueDouble(([_, second]) => [val, second]);
     }
   };
 
@@ -42,6 +37,7 @@ function HW11() {
   ) => {
     if (Array.isArray(val)) {
       setValueDouble([val[0], val[1]]);
+      setValueSingle(val[0]);
     }
   };
 
@@ -50,7 +46,6 @@ function HW11() {
       <div className={s2.hwTitle}>Hometask № 11</div>
       <div className={s2.hw}>
         <div className={s.container}>
-          {/* Одиночный слайдер */}
           <div className={s.wrapper}>
             <span id="hw11-value" data-testid="value1" className={s.number}>
               {valueSingle}
@@ -66,7 +61,6 @@ function HW11() {
             />
           </div>
 
-          {/* Двойной слайдер */}
           <div className={s.wrapper}>
             <span
               id="hw11-value-1"
