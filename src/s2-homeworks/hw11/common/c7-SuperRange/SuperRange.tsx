@@ -8,7 +8,7 @@ const SuperRange: React.FC<SliderProps & { id?: string }> = (props) => {
   return (
     <Slider
       {...restProps}
-      data-testid={id || "super-range"}
+      data-testid={id && id.trim() !== "" ? id : "super-range"}
       componentsProps={{
         thumb: {
           "aria-label": "slider-thumb",
