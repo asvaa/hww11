@@ -9,10 +9,10 @@ const SuperRange: React.FC<SliderProps> = (props) => {
     <Slider
       {...restProps}
       data-testid={id || "super-range"}
-      slotProps={{
-        thumb: (index) => ({
-          "data-testid": `${id || "super-range"}-thumb-${index}`,
-        }),
+      componentsProps={{
+        thumb: {
+          "aria-label": "slider-thumb", 
+        },
       }}
       sx={{
         width: 300,

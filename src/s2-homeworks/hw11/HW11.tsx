@@ -60,8 +60,8 @@ function HW11() {
               {valueSingle}
             </span>
             <div id="hw11-single-slider">
-              <span style={{ display: "none" }}>Cypress helper span</span>
               <SuperRange
+                id="single-slider"
                 value={valueSingle}
                 onChange={changeSingle}
                 min={0}
@@ -81,8 +81,8 @@ function HW11() {
               {valueDouble[0]}
             </span>
             <div id="hw11-double-slider">
-              <span style={{ display: "none" }}>Cypress helper span</span>
               <SuperRange
+                id="double-slider"
                 value={valueDouble}
                 onChange={changeDouble}
                 min={0}
