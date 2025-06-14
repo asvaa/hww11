@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "@mui/material/Slider";
 import type { SliderProps } from "@mui/material";
 
-const SuperRange: React.FC<SliderProps> = (props) => {
+const SuperRange: React.FC<SliderProps & { id?: string }> = (props) => {
   const { id, ...restProps } = props;
 
   return (
@@ -11,7 +11,7 @@ const SuperRange: React.FC<SliderProps> = (props) => {
       data-testid={id || "super-range"}
       componentsProps={{
         thumb: {
-          "aria-label": "slider-thumb", 
+          "aria-label": "slider-thumb",
         },
       }}
       sx={{
