@@ -16,7 +16,6 @@ const SuperRange: React.FC<SuperRangeProps> = (props) => {
         componentsProps={{
           thumb: {
             "aria-label": "slider-thumb",
-            // Используем as any для обхода проверки типов
             ...({ "data-testid": `${id}-thumb` } as any),
           },
         }}
