@@ -1,43 +1,50 @@
 import React from "react";
-import Slider from "@mui/material/Slider";
-import type { SliderProps } from "@mui/material";
+import Slider, { SliderProps } from "@mui/material/Slider";
 
-const SuperRange: React.FC<SliderProps & { id?: string }> = (props) => {
-  const { id, ...restProps } = props;
+type SuperRangeProps = SliderProps & {
+  id?: string;
+};
+
+const SuperRange: React.FC<SuperRangeProps> = (props) => {
+  const { id, value, ...restProps } = props;
 
   return (
-    <Slider
-      {...restProps}
-      data-testid={id && id.trim() !== "" ? id : "super-range"}
-      componentsProps={{
-        thumb: {
-          "aria-label": "slider-thumb",
-        },
-      }}
-      sx={{
-        width: 300,
-        height: 4,
-        color: "#52af77",
-        "& .MuiSlider-thumb": {
-          height: 20,
-          width: 20,
-          backgroundColor: "#fff",
-          border: "2px solid #52af77",
-          boxShadow: "none",
-          "&:hover, &.Mui-focusVisible, &.Mui-active": {
-            boxShadow: "none",
+    <div data-testid={`${id}-container`}>
+      <Slider
+        {...restProps}
+        value={value}
+        componentsProps={{
+          thumb: {
+            "aria-label": "slider-thumb",
+            // Используем as any для обхода проверки типов
+            ...({ "data-testid": `${id}-thumb` } as any),
           },
-        },
-        "& .MuiSlider-track": {
-          border: "none",
-          backgroundColor: "#52af77",
-        },
-        "& .MuiSlider-rail": {
-          opacity: 1,
-          backgroundColor: "#bfbfbf",
-        },
-      }}
-    />
+        }}
+        sx={{
+          width: 300,
+          height: 4,
+          color: "#52af77",
+          "& .MuiSlider-thumb": {
+            height: 20,
+            width: 20,
+            backgroundColor: "#fff",
+            border: "2px solid #52af77",
+            boxShadow: "none",
+            "&:hover, &.Mui-focusVisible, &.Mui-active": {
+              boxShadow: "none",
+            },
+          },
+          "& .MuiSlider-track": {
+            border: "none",
+            backgroundColor: "#52af77",
+          },
+          "& .MuiSlider-rail": {
+            opacity: 1,
+            backgroundColor: "#bfbfbf",
+          },
+        }}
+      />
+    </div>
   );
 };
 

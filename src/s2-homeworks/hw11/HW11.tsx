@@ -56,12 +56,12 @@ function HW11() {
         <div className={s.container}>
           {/* Одиночный слайдер */}
           <div className={s.wrapper}>
-            <span id="hw11-value" data-testid="value1" className={s.number}>
+            <span id="hw11-value" data-testid="hw11-value-single" className={s.number}>
               {valueSingle}
             </span>
-            <div id="hw11-single-slider">
+            <div id="hw11-single-slider" data-testid="hw11-single-slider">
               <SuperRange
-                id="single-slider"
+                id="hw11-single-slider"
                 value={valueSingle}
                 onChange={changeSingle}
                 min={0}
@@ -73,16 +73,12 @@ function HW11() {
 
           {/* Двойной слайдер */}
           <div className={s.wrapper}>
-            <span
-              id="hw11-value-1"
-              data-testid="value1-double"
-              className={s.number}
-            >
+            <span id="hw11-value-1" data-testid="hw11-value-double-1" className={s.number}>
               {valueDouble[0]}
             </span>
-            <div id="hw11-double-slider">
+            <div id="hw11-double-slider" data-testid="hw11-double-slider">
               <SuperRange
-                id="double-slider"
+                id="hw11-double-slider"
                 value={valueDouble}
                 onChange={changeDouble}
                 min={0}
@@ -90,7 +86,7 @@ function HW11() {
                 step={1}
               />
             </div>
-            <span id="hw11-value-2" data-testid="value2" className={s.number}>
+            <span id="hw11-value-2" data-testid="hw11-value-double-2" className={s.number}>
               {valueDouble[1]}
             </span>
           </div>
