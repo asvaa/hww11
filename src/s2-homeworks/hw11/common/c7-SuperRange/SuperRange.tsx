@@ -8,9 +8,11 @@ type SuperRangeProps = SliderProps & {
 const SuperRange: React.FC<SuperRangeProps> = ({ id, value, ...restProps }) => {
   return (
     <div data-testid={`${id}-container`}>
+      {/* id вешаем прямо на Slider, чтобы Cypress тянул правильный элемент */}
       <Slider
-        {...restProps}
+        id={id}
         value={value}
+        {...restProps}
         componentsProps={{
           thumb: {
             "aria-label": "slider-thumb",

@@ -7,6 +7,7 @@ import SuperRange from "./common/c7-SuperRange/SuperRange";
 function HW11() {
   const initialSingleValue =
     process.env.NODE_ENV === "test" ? 25 : restoreState("hw11-value1", 0);
+
   const initialDoubleValue =
     process.env.NODE_ENV === "test"
       ? [25, 75]
@@ -17,6 +18,7 @@ function HW11() {
     initialDoubleValue as [number, number]
   );
 
+  // сбрасываем стор при тестах
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -26,7 +28,7 @@ function HW11() {
     }
   }, []);
 
-  // Обработчики разделены!
+  /* ---------- ОДИНОЧНЫЙ ---------- */
   const handleSingleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -34,14 +36,17 @@ function HW11() {
     if (typeof val === "number") {
       setValueSingle(val);
       saveState("hw11-value1", val);
-      setValueDouble(([_, second]) => {
-        const newDouble: [number, number] = [val, second];
+
+      // синхронизируем левый маркер двойного слайдера
+      setValueDouble(([_, right]) => {
+        const newDouble: [number, number] = [val, right];
         saveState("hw11-value2", newDouble);
         return newDouble;
       });
     }
   };
 
+  /* ---------- ДВОЙНОЙ ---------- */
   const handleDoubleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -50,6 +55,8 @@ function HW11() {
       const newDouble: [number, number] = [val[0], val[1]];
       setValueDouble(newDouble);
       saveState("hw11-value2", newDouble);
+
+      // синхронизируем одиночный слайдер
       setValueSingle(newDouble[0]);
       saveState("hw11-value1", newDouble[0]);
     }
@@ -60,13 +67,9 @@ function HW11() {
       <div className={s2.hwTitle}>Hometask №11</div>
       <div className={s2.hw}>
         <div className={s.container}>
-          {/* Одиночный слайдер */}
+          {/* ---------- ОДИНОЧНЫЙ ---------- */}
           <div className={s.wrapper}>
-            <div
-              id="hw11-single-slider"
-              data-testid="hw11-single-slider"
-              className={s.sliderWrapper}
-            >
+            <div data-testid="hw11-single-slider" className={s.sliderWrapper}>
               <span
                 id="hw11-value"
                 data-testid="hw11-value-single"
@@ -74,8 +77,9 @@ function HW11() {
               >
                 {valueSingle}
               </span>
+
               <SuperRange
-                id="hw11-single-slider"
+                id="hw11-single-slider" // id теперь на самом Slider
                 value={valueSingle}
                 onChange={handleSingleChange}
                 min={0}
@@ -85,13 +89,10 @@ function HW11() {
               />
             </div>
           </div>
-          {/* Двойной слайдер */}
+
+          {/* ---------- ДВОЙНОЙ ---------- */}
           <div className={s.wrapper}>
-            <div
-              id="hw11-double-slider"
-              data-testid="hw11-double-slider"
-              className={s.sliderWrapper}
-            >
+            <div data-testid="hw11-double-slider" className={s.sliderWrapper}>
               <span
                 id="hw11-value-1"
                 data-testid="hw11-value-double-1"
@@ -99,8 +100,9 @@ function HW11() {
               >
                 {valueDouble[0]}
               </span>
+
               <SuperRange
-                id="hw11-double-slider"
+                id="hw11-double-slider" // id теперь на самом Slider
                 value={valueDouble}
                 onChange={handleDoubleChange}
                 min={0}
@@ -108,6 +110,7 @@ function HW11() {
                 step={1}
                 data-testid="hw11-double-slider-input"
               />
+
               <span
                 id="hw11-value-2"
                 data-testid="hw11-value-double-2"
