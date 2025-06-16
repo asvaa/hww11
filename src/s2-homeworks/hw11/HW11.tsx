@@ -26,24 +26,32 @@ function HW11() {
     }
   }, []);
 
-  const handleChange = (
+  // Обработчики разделены!
+  const handleSingleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
   ) => {
     if (typeof val === "number") {
       setValueSingle(val);
+      saveState("hw11-value1", val);
       setValueDouble(([_, second]) => {
         const newDouble: [number, number] = [val, second];
-        saveState("hw11-value1", val);
         saveState("hw11-value2", newDouble);
         return newDouble;
       });
-    } else if (Array.isArray(val)) {
+    }
+  };
+
+  const handleDoubleChange = (
+    _e: Event | React.SyntheticEvent,
+    val: number | number[]
+  ) => {
+    if (Array.isArray(val) && val.length === 2) {
       const newDouble: [number, number] = [val[0], val[1]];
       setValueDouble(newDouble);
+      saveState("hw11-value2", newDouble);
       setValueSingle(newDouble[0]);
       saveState("hw11-value1", newDouble[0]);
-      saveState("hw11-value2", newDouble);
     }
   };
 
@@ -52,7 +60,6 @@ function HW11() {
       <div className={s2.hwTitle}>Hometask №11</div>
       <div className={s2.hw}>
         <div className={s.container}>
-
           {/* Одиночный слайдер */}
           <div className={s.wrapper}>
             <div
@@ -70,8 +77,7 @@ function HW11() {
               <SuperRange
                 id="hw11-single-slider"
                 value={valueSingle}
-                onChange={handleChange}
-                onChangeCommitted={handleChange}
+                onChange={handleSingleChange}
                 min={0}
                 max={100}
                 step={1}
@@ -79,7 +85,6 @@ function HW11() {
               />
             </div>
           </div>
-
           {/* Двойной слайдер */}
           <div className={s.wrapper}>
             <div
@@ -97,8 +102,7 @@ function HW11() {
               <SuperRange
                 id="hw11-double-slider"
                 value={valueDouble}
-                onChange={handleChange}
-                onChangeCommitted={handleChange}
+                onChange={handleDoubleChange}
                 min={0}
                 max={100}
                 step={1}
@@ -113,7 +117,6 @@ function HW11() {
               </span>
             </div>
           </div>
-
         </div>
       </div>
     </div>

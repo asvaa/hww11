@@ -1,4 +1,3 @@
-// src/s2-homeworks/hw11/common/c7-SuperRange/SuperRange.tsx
 import React from "react";
 import Slider, { SliderProps } from "@mui/material/Slider";
 
