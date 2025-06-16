@@ -1,3 +1,4 @@
+// src/s2-homeworks/hw11/common/c7-SuperRange/SuperRange.tsx
 import React from "react";
 import Slider, { SliderProps } from "@mui/material/Slider";
 
@@ -5,9 +6,7 @@ type SuperRangeProps = SliderProps & {
   id?: string;
 };
 
-const SuperRange: React.FC<SuperRangeProps> = (props) => {
-  const { id, value, ...restProps } = props;
-
+const SuperRange: React.FC<SuperRangeProps> = ({ id, value, ...restProps }) => {
   return (
     <div data-testid={`${id}-container`}>
       <Slider
@@ -29,8 +28,9 @@ const SuperRange: React.FC<SuperRangeProps> = (props) => {
             backgroundColor: "#fff",
             border: "2px solid #52af77",
             boxShadow: "none",
+            transition: "0.3s ease",
             "&:hover, &.Mui-focusVisible, &.Mui-active": {
-              boxShadow: "none",
+              boxShadow: "0 0 0 6px rgba(82, 175, 119, 0.2)",
             },
           },
           "& .MuiSlider-track": {
@@ -39,7 +39,7 @@ const SuperRange: React.FC<SuperRangeProps> = (props) => {
           },
           "& .MuiSlider-rail": {
             opacity: 1,
-            backgroundColor: "#bfbfbf",
+            backgroundColor: "#e0e0e0",
           },
         }}
       />

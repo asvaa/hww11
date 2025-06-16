@@ -1,3 +1,4 @@
+/* src/s2-homeworks/hw11/HW11.module.css */
 .container {
   display: flex;
   flex-direction: column;
@@ -12,7 +13,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  width: 300px; 
+  width: 300px;
   box-sizing: border-box;
 }
 
@@ -22,4 +23,5 @@
   text-align: center;
   color: #333;
   user-select: none;
+  cursor: default;
 }

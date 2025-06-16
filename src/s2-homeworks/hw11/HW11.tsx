@@ -1,3 +1,4 @@
+// src/s2-homeworks/hw11/HW11.tsx
 import React, { useEffect, useState } from "react";
 import s from "./HW11.module.css";
 import s2 from "../../s1-main/App.module.css";
@@ -5,7 +6,6 @@ import { restoreState, saveState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
-  // Добавляем явное указание начальных значений для тестовой среды
   const initialSingleValue =
     process.env.NODE_ENV === "test" ? 25 : restoreState("hw11-value1", 0);
   const initialDoubleValue =
@@ -20,7 +20,6 @@ function HW11() {
 
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
-      // Убедимся, что значения точно установятся для тестов
       localStorage.removeItem("hw11-value1");
       localStorage.removeItem("hw11-value2");
       saveState("hw11-value1", 25);
@@ -28,7 +27,7 @@ function HW11() {
     }
   }, []);
 
-  const changeSingle = (
+  const handleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
   ) => {
@@ -40,24 +39,18 @@ function HW11() {
         saveState("hw11-value2", newDouble);
         return newDouble;
       });
-    }
-  };
-
-  const changeDouble = (
-    _e: Event | React.SyntheticEvent,
-    val: number | number[]
-  ) => {
-    if (Array.isArray(val)) {
-      setValueDouble(val as [number, number]);
-      setValueSingle(val[0]);
-      saveState("hw11-value1", val[0]);
-      saveState("hw11-value2", val);
+    } else if (Array.isArray(val)) {
+      const newDouble: [number, number] = [val[0], val[1]];
+      setValueDouble(newDouble);
+      setValueSingle(newDouble[0]);
+      saveState("hw11-value1", newDouble[0]);
+      saveState("hw11-value2", newDouble);
     }
   };
 
   return (
     <div data-testid="hw11">
-      <div className={s2.hwTitle}>Hometask № 11</div>
+      <div className={s2.hwTitle}>Hometask №11</div>
       <div className={s2.hw}>
         <div className={s.container}>
           {/* Одиночный слайдер */}
@@ -69,17 +62,15 @@ function HW11() {
             >
               {valueSingle}
             </span>
-            <div id="hw11-single-slider" data-testid="hw11-single-slider">
-              <SuperRange
-                id="hw11-single-slider"
-                value={valueSingle}
-                onChange={changeSingle}
-                min={0}
-                max={100}
-                step={1}
-                data-testid="hw11-single-slider-input"
-              />
-            </div>
+            <SuperRange
+              id="hw11-single-slider"
+              value={valueSingle}
+              onChange={handleChange}
+              min={0}
+              max={100}
+              step={1}
+              data-testid="hw11-single-slider-input"
+            />
           </div>
 
           {/* Двойной слайдер */}
@@ -91,17 +82,15 @@ function HW11() {
             >
               {valueDouble[0]}
             </span>
-            <div id="hw11-double-slider" data-testid="hw11-double-slider">
-              <SuperRange
-                id="hw11-double-slider"
-                value={valueDouble}
-                onChange={changeDouble}
-                min={0}
-                max={100}
-                step={1}
-                data-testid="hw11-double-slider-input"
-              />
-            </div>
+            <SuperRange
+              id="hw11-double-slider"
+              value={valueDouble}
+              onChange={handleChange}
+              min={0}
+              max={100}
+              step={1}
+              data-testid="hw11-double-slider-input"
+            />
             <span
               id="hw11-value-2"
               data-testid="hw11-value-double-2"
