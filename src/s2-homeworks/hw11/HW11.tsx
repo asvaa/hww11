@@ -71,6 +71,7 @@ function HW11() {
                 id="hw11-single-slider"
                 value={valueSingle}
                 onChange={handleChange}
+                onChangeCommitted={handleChange}
                 min={0}
                 max={100}
                 step={1}
@@ -97,6 +98,7 @@ function HW11() {
                 id="hw11-double-slider"
                 value={valueDouble}
                 onChange={handleChange}
+                onChangeCommitted={handleChange}
                 min={0}
                 max={100}
                 step={1}
