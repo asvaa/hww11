@@ -18,7 +18,7 @@ function HW11() {
     initialDoubleValue as [number, number]
   );
 
-  // сбрасываем стор при тестах
+  // сбрасываем localStorage при тестах
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -28,7 +28,7 @@ function HW11() {
     }
   }, []);
 
-  /* ---------- ОДИНОЧНЫЙ ---------- */
+  // Одиночный слайдер
   const handleSingleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -37,7 +37,7 @@ function HW11() {
       setValueSingle(val);
       saveState("hw11-value1", val);
 
-      // синхронизируем левый маркер двойного слайдера
+      // синхронизируем левый маркер двойного
       setValueDouble(([_, right]) => {
         const newDouble: [number, number] = [val, right];
         saveState("hw11-value2", newDouble);
@@ -46,7 +46,7 @@ function HW11() {
     }
   };
 
-  /* ---------- ДВОЙНОЙ ---------- */
+  // Двойной слайдер
   const handleDoubleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -79,10 +79,10 @@ function HW11() {
               </span>
 
               <SuperRange
-                id="hw11-single-slider" // id теперь на самом Slider
+                id="hw11-single-slider"
                 value={valueSingle}
                 onChange={handleSingleChange}
-                onChangeCommitted={handleDoubleChange}
+                onChangeCommitted={handleSingleChange} // ✅ исправлено
                 min={0}
                 max={100}
                 step={1}
@@ -103,7 +103,7 @@ function HW11() {
               </span>
 
               <SuperRange
-                id="hw11-double-slider" // id теперь на самом Slider
+                id="hw11-double-slider"
                 value={valueDouble}
                 onChange={handleDoubleChange}
                 onChangeCommitted={handleDoubleChange}
