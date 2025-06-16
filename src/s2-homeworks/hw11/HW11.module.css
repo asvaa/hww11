@@ -1,4 +1,3 @@
-/* src/s2-homeworks/hw11/HW11.module.css */
 .container {
   display: flex;
   flex-direction: column;
@@ -10,6 +9,12 @@
 }
 
 .wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sliderWrapper {
   display: flex;
   align-items: center;
   gap: 15px;

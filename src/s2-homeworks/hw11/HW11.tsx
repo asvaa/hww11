@@ -1,4 +1,3 @@
-// src/s2-homeworks/hw11/HW11.tsx
 import React, { useEffect, useState } from "react";
 import s from "./HW11.module.css";
 import s2 from "../../s1-main/App.module.css";
@@ -53,52 +52,66 @@ function HW11() {
       <div className={s2.hwTitle}>Hometask №11</div>
       <div className={s2.hw}>
         <div className={s.container}>
+
           {/* Одиночный слайдер */}
           <div className={s.wrapper}>
-            <span
-              id="hw11-value"
-              data-testid="hw11-value-single"
-              className={s.number}
-            >
-              {valueSingle}
-            </span>
-            <SuperRange
+            <div
               id="hw11-single-slider"
-              value={valueSingle}
-              onChange={handleChange}
-              min={0}
-              max={100}
-              step={1}
-              data-testid="hw11-single-slider-input"
-            />
+              data-testid="hw11-single-slider"
+              className={s.sliderWrapper}
+            >
+              <span
+                id="hw11-value"
+                data-testid="hw11-value-single"
+                className={s.number}
+              >
+                {valueSingle}
+              </span>
+              <SuperRange
+                id="hw11-single-slider"
+                value={valueSingle}
+                onChange={handleChange}
+                min={0}
+                max={100}
+                step={1}
+                data-testid="hw11-single-slider-input"
+              />
+            </div>
           </div>
 
           {/* Двойной слайдер */}
           <div className={s.wrapper}>
-            <span
-              id="hw11-value-1"
-              data-testid="hw11-value-double-1"
-              className={s.number}
-            >
-              {valueDouble[0]}
-            </span>
-            <SuperRange
+            <div
               id="hw11-double-slider"
-              value={valueDouble}
-              onChange={handleChange}
-              min={0}
-              max={100}
-              step={1}
-              data-testid="hw11-double-slider-input"
-            />
-            <span
-              id="hw11-value-2"
-              data-testid="hw11-value-double-2"
-              className={s.number}
+              data-testid="hw11-double-slider"
+              className={s.sliderWrapper}
             >
-              {valueDouble[1]}
-            </span>
+              <span
+                id="hw11-value-1"
+                data-testid="hw11-value-double-1"
+                className={s.number}
+              >
+                {valueDouble[0]}
+              </span>
+              <SuperRange
+                id="hw11-double-slider"
+                value={valueDouble}
+                onChange={handleChange}
+                min={0}
+                max={100}
+                step={1}
+                data-testid="hw11-double-slider-input"
+              />
+              <span
+                id="hw11-value-2"
+                data-testid="hw11-value-double-2"
+                className={s.number}
+              >
+                {valueDouble[1]}
+              </span>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
