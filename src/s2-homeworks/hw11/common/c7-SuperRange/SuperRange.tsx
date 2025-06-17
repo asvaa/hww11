@@ -29,12 +29,10 @@ const SuperRange: React.FC<SuperRangeProps> = ({ id, value, ...restProps }) => {
             backgroundColor: "#fff",
             border: "2px solid #52af77",
             boxShadow: "none",
-            transition: "0.3s ease",
-            "&:hover, &.Mui-focusVisible, &.Mui-active": {
-              boxShadow: "0 0 0 6px rgba(82, 175, 119, 0.2)",
-            },
+            transition: 'none',
           },
           "& .MuiSlider-track": {
+            transition: 'none', 
             border: "none",
             backgroundColor: "#52af77",
           },
