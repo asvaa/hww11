@@ -71,17 +71,18 @@ function HW11() {
           <div className={s.wrapper}>
             <div data-testid="hw11-single-slider" className={s.sliderWrapper}>
               <span
-                id="hw11-value-single"
+                id="hw11-value"
                 data-testid="hw11-value-single"
                 className={s.number}
               >
                 {valueSingle}
               </span>
+
               <SuperRange
                 id="hw11-single-slider"
                 value={valueSingle}
                 onChange={handleSingleChange}
-                onChangeCommitted={handleSingleChange}
+                onChangeCommitted={handleSingleChange} // ✅ исправлено
                 min={0}
                 max={100}
                 step={1}
@@ -100,6 +101,7 @@ function HW11() {
               >
                 {valueDouble[0]}
               </span>
+
               <SuperRange
                 id="hw11-double-slider"
                 value={valueDouble}
@@ -110,6 +112,7 @@ function HW11() {
                 step={1}
                 data-testid="hw11-double-slider-input"
               />
+
               <span
                 id="hw11-value-2"
                 data-testid="hw11-value-double-2"
