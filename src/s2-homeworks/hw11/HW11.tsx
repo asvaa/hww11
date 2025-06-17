@@ -5,7 +5,6 @@ import { restoreState, saveState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
-  // Начальные значения
   const initialSingleValue =
     process.env.NODE_ENV === "test" ? 25 : restoreState("hw11-value1", 0);
 
@@ -19,7 +18,7 @@ function HW11() {
     initialDoubleValue as [number, number]
   );
 
-  // Сброс localStorage для тестов
+  // сбрасываем localStorage при тестах
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -29,7 +28,7 @@ function HW11() {
     }
   }, []);
 
-  // Одиночный слайдер: меняем оба значения
+  // Одиночный слайдер
   const handleSingleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -38,7 +37,7 @@ function HW11() {
       setValueSingle(val);
       saveState("hw11-value1", val);
 
-      // синхронизируем левый маркер двойного слайдера
+      // синхронизируем левый маркер двойного
       setValueDouble(([_, right]) => {
         const newDouble: [number, number] = [val, right];
         saveState("hw11-value2", newDouble);
@@ -47,7 +46,7 @@ function HW11() {
     }
   };
 
-  // Двойной слайдер: меняем оба значения
+  // Двойной слайдер
   const handleDoubleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -78,7 +77,6 @@ function HW11() {
               >
                 {valueSingle}
               </span>
-
               <SuperRange
                 id="hw11-single-slider"
                 value={valueSingle}
@@ -102,7 +100,6 @@ function HW11() {
               >
                 {valueDouble[0]}
               </span>
-
               <SuperRange
                 id="hw11-double-slider"
                 value={valueDouble}
@@ -113,7 +110,6 @@ function HW11() {
                 step={1}
                 data-testid="hw11-double-slider-input"
               />
-
               <span
                 id="hw11-value-2"
                 data-testid="hw11-value-double-2"

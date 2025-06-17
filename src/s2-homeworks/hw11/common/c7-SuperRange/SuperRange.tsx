@@ -7,12 +7,10 @@ type SuperRangeProps = SliderProps & {
 
 const SuperRange: React.FC<SuperRangeProps> = ({ id, value, ...restProps }) => (
   <div data-testid={`${id}-container`}>
-    {/* id нужен для тестов */}
     <Slider
       id={id}
       value={value}
       {...restProps}
-      // прокидываем data-testid для thumb, если нужен тестам
       componentsProps={{
         thumb: {
           "aria-label": "slider-thumb",
