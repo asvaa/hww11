@@ -18,7 +18,6 @@ function HW11() {
     initialDoubleValue as [number, number]
   );
 
-  // сбрасываем localStorage при тестах
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -28,7 +27,6 @@ function HW11() {
     }
   }, []);
 
-  // Одиночный слайдер
   const handleSingleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -37,7 +35,6 @@ function HW11() {
       setValueSingle(val);
       saveState("hw11-value1", val);
 
-      // синхронизируем левый маркер двойного
       setValueDouble(([_, right]) => {
         const newDouble: [number, number] = [val, right];
         saveState("hw11-value2", newDouble);
@@ -46,7 +43,6 @@ function HW11() {
     }
   };
 
-  // Двойной слайдер
   const handleDoubleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -56,7 +52,6 @@ function HW11() {
       setValueDouble(newDouble);
       saveState("hw11-value2", newDouble);
 
-      // синхронизируем одиночный слайдер
       setValueSingle(newDouble[0]);
       saveState("hw11-value1", newDouble[0]);
     }
@@ -71,7 +66,7 @@ function HW11() {
           <div className={s.wrapper}>
             <div data-testid="hw11-single-slider" className={s.sliderWrapper}>
               <span
-                id="hw11-value-single"
+                id="hw11-value"
                 data-testid="hw11-value-single"
                 className={s.number}
               >
