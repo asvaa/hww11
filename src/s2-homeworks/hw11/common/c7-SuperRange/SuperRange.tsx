@@ -5,47 +5,46 @@ type SuperRangeProps = SliderProps & {
   id?: string;
 };
 
-const SuperRange: React.FC<SuperRangeProps> = ({ id, value, ...restProps }) => {
-  return (
-    <div data-testid={`${id}-container`}>
-      {/* id вешаем прямо на Slider, чтобы Cypress тянул правильный элемент */}
-      <Slider
-        id={id}
-        value={value}
-        {...restProps}
-        componentsProps={{
-          thumb: {
-            "aria-label": "slider-thumb",
-            ...({ "data-testid": `${id}-thumb` } as any),
+const SuperRange: React.FC<SuperRangeProps> = ({ id, value, ...restProps }) => (
+  <div data-testid={`${id}-container`}>
+    {/* id нужен для тестов */}
+    <Slider
+      id={id}
+      value={value}
+      {...restProps}
+      // прокидываем data-testid для thumb, если нужен тестам
+      componentsProps={{
+        thumb: {
+          "aria-label": "slider-thumb",
+          ...(id ? { "data-testid": `${id}-thumb` } : {}),
+        },
+      }}
+      sx={{
+        width: 300,
+        height: 4,
+        color: "#52af77",
+        "& .MuiSlider-thumb": {
+          height: 20,
+          width: 20,
+          backgroundColor: "#fff",
+          border: "2px solid #52af77",
+          boxShadow: "none",
+          transition: "0.3s ease",
+          "&:hover, &.Mui-focusVisible, &.Mui-active": {
+            boxShadow: "0 0 0 6px rgba(82, 175, 119, 0.2)",
           },
-        }}
-        sx={{
-          width: 300,
-          height: 4,
-          color: "#52af77",
-          "& .MuiSlider-thumb": {
-            height: 20,
-            width: 20,
-            backgroundColor: "#fff",
-            border: "2px solid #52af77",
-            boxShadow: "none",
-            transition: "0.3s ease",
-            "&:hover, &.Mui-focusVisible, &.Mui-active": {
-              boxShadow: "0 0 0 6px rgba(82, 175, 119, 0.2)",
-            },
-          },
-          "& .MuiSlider-track": {
-            border: "none",
-            backgroundColor: "#52af77",
-          },
-          "& .MuiSlider-rail": {
-            opacity: 1,
-            backgroundColor: "#e0e0e0",
-          },
-        }}
-      />
-    </div>
-  );
-};
+        },
+        "& .MuiSlider-track": {
+          border: "none",
+          backgroundColor: "#52af77",
+        },
+        "& .MuiSlider-rail": {
+          opacity: 1,
+          backgroundColor: "#e0e0e0",
+        },
+      }}
+    />
+  </div>
+);
 
 export default SuperRange;

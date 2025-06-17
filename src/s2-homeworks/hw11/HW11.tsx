@@ -5,6 +5,7 @@ import { restoreState, saveState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
+  // Начальные значения
   const initialSingleValue =
     process.env.NODE_ENV === "test" ? 25 : restoreState("hw11-value1", 0);
 
@@ -18,7 +19,7 @@ function HW11() {
     initialDoubleValue as [number, number]
   );
 
-  // сбрасываем localStorage при тестах
+  // Сброс localStorage для тестов
   useEffect(() => {
     if (process.env.NODE_ENV === "test") {
       localStorage.removeItem("hw11-value1");
@@ -28,7 +29,7 @@ function HW11() {
     }
   }, []);
 
-  // Одиночный слайдер
+  // Одиночный слайдер: меняем оба значения
   const handleSingleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -37,7 +38,7 @@ function HW11() {
       setValueSingle(val);
       saveState("hw11-value1", val);
 
-      // синхронизируем левый маркер двойного
+      // синхронизируем левый маркер двойного слайдера
       setValueDouble(([_, right]) => {
         const newDouble: [number, number] = [val, right];
         saveState("hw11-value2", newDouble);
@@ -46,7 +47,7 @@ function HW11() {
     }
   };
 
-  // Двойной слайдер
+  // Двойной слайдер: меняем оба значения
   const handleDoubleChange = (
     _e: Event | React.SyntheticEvent,
     val: number | number[]
@@ -71,7 +72,7 @@ function HW11() {
           <div className={s.wrapper}>
             <div data-testid="hw11-single-slider" className={s.sliderWrapper}>
               <span
-                id="hw11-value"
+                id="hw11-value-single"
                 data-testid="hw11-value-single"
                 className={s.number}
               >
@@ -82,7 +83,7 @@ function HW11() {
                 id="hw11-single-slider"
                 value={valueSingle}
                 onChange={handleSingleChange}
-                onChangeCommitted={handleSingleChange} // ✅ исправлено
+                onChangeCommitted={handleSingleChange}
                 min={0}
                 max={100}
                 step={1}
