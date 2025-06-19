@@ -12,30 +12,25 @@ import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
   // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
-  const [value1, setValue1] = useState(restoreState<number>("hw11-value1", 0));
-  const [value2, setValue2] = useState(
+  const [value1, setValue1] = useState<number>(
+    restoreState<number>("hw11-value1", 0)
+  );
+  const [value2, setValue2] = useState<number>(
     restoreState<number>("hw11-value2", 100)
   );
 
-  const change = (event: any, value: any) => {
-    // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
+  const change = (event: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
       setValue1(value[0]);
       setValue2(value[1]);
     } else {
-      // Допустим, по event.target.name различаем, какой слайдер меняется
-      if (event?.target?.name === "slider2") {
-        setValue2(value);
-      } else {
-        setValue1(value);
-      }
+      setValue1(value);
     }
   };
 
   return (
     <div id={"hw11"}>
       <div className={s2.hwTitle}>Homework #11</div>
-
       <div className={s2.hw}>
         <div className={s.container}>
           <div className={s.wrapper}>
@@ -46,7 +41,6 @@ function HW11() {
               id={"hw11-single-slider"}
               onChange={change}
               value={value1}
-              // сделать так чтоб value1 изменялось // пишет студент
             />
           </div>
           <div className={s.wrapper}>
@@ -57,7 +51,6 @@ function HW11() {
               id={"hw11-double-slider"}
               onChange={change}
               value={[value1, value2]}
-              // сделать так чтоб value1/2 изменялось // пишет студент
             />
             <span id={"hw11-value-2"} className={s.number}>
               {value2}
