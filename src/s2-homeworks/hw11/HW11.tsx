@@ -10,9 +10,7 @@ import SuperRange from "./common/c7-SuperRange/SuperRange";
  * 3 - сделать стили в соответствии с дизайном
  * */
 
-
 function HW11() {
-  // начальные значения
   const [value1, setValue1] = useState<number>(
     restoreState<number>("hw11-value1", 0)
   );
@@ -20,16 +18,14 @@ function HW11() {
     restoreState<number>("hw11-value2", 100)
   );
 
-  // изменение одиночного слайдера — сдвигаем value1 и ЛЕВЫЙ бегунок двойного слайдера
+  // Меняет только value1 (и левый бегунок double-слайдера)
   const handleSingleChange = (_event: Event, newValue: number | number[]) => {
     if (typeof newValue === "number") {
       setValue1(newValue);
-      // если value2 меньше value1 — делаем value2 = value1 (нельзя чтобы value2 < value1)
-      setValue2((prev) => prev < newValue ? newValue : prev);
     }
   };
 
-  // изменение двойного слайдера
+  // Double-слайдер — можно двигать оба бегунка независимо
   const handleDoubleChange = (_event: Event, newValue: number | number[]) => {
     if (Array.isArray(newValue)) {
       setValue1(newValue[0]);
