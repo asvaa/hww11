@@ -4,6 +4,8 @@ import { Slider, SliderProps } from "@mui/material";
 const SuperRange: React.FC<SliderProps> = (props) => {
   return (
     <Slider
+      valueLabelDisplay="auto"
+      disableSwap
       sx={{
         color: "#00FF66",
         height: 4,
