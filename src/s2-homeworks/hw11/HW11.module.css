@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -29,4 +29,21 @@
   color: #333;
   user-select: none;
   cursor: default;
+} */
+.container {
+  width: 100%;
+  max-width: 500px; /* установи ширину как тебе подходит по дизайну */
+  margin: 0 auto; /* центрирование */
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* отступы между цифрой и слайдером */
+  margin-bottom: 20px; /* отступ между группами */
+}
+
+.number {
+  width: 30px; /* ширина под цифру */
+  text-align: center;
 }
