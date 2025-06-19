@@ -10,8 +10,9 @@ import SuperRange from "./common/c7-SuperRange/SuperRange";
  * 3 - сделать стили в соответствии с дизайном
  * */
 
+
 function HW11() {
-  // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
+  // начальные значения
   const [value1, setValue1] = useState<number>(
     restoreState<number>("hw11-value1", 0)
   );
@@ -19,12 +20,20 @@ function HW11() {
     restoreState<number>("hw11-value2", 100)
   );
 
-  const change = (event: Event, value: number | number[]) => {
-    if (Array.isArray(value)) {
-      setValue1(value[0]);
-      setValue2(value[1]);
-    } else {
-      setValue1(value);
+  // изменение одиночного слайдера — сдвигаем value1 и ЛЕВЫЙ бегунок двойного слайдера
+  const handleSingleChange = (_event: Event, newValue: number | number[]) => {
+    if (typeof newValue === "number") {
+      setValue1(newValue);
+      // если value2 меньше value1 — делаем value2 = value1 (нельзя чтобы value2 < value1)
+      setValue2((prev) => prev < newValue ? newValue : prev);
+    }
+  };
+
+  // изменение двойного слайдера
+  const handleDoubleChange = (_event: Event, newValue: number | number[]) => {
+    if (Array.isArray(newValue)) {
+      setValue1(newValue[0]);
+      setValue2(newValue[1]);
     }
   };
 
@@ -39,8 +48,10 @@ function HW11() {
             </span>
             <SuperRange
               id={"hw11-single-slider"}
-              onChange={change}
               value={value1}
+              min={0}
+              max={100}
+              onChange={handleSingleChange}
             />
           </div>
           <div className={s.wrapper}>
@@ -49,8 +60,10 @@ function HW11() {
             </span>
             <SuperRange
               id={"hw11-double-slider"}
-              onChange={change}
               value={[value1, value2]}
+              min={0}
+              max={100}
+              onChange={handleDoubleChange}
             />
             <span id={"hw11-value-2"} className={s.number}>
               {value2}

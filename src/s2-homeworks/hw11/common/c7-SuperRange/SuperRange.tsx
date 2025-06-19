@@ -1,48 +1,31 @@
+// common/c7-SuperRange/SuperRange.tsx
+
 import React from "react";
-import Slider, { SliderProps } from "@mui/material/Slider";
+import { Slider, SliderProps } from "@mui/material";
 
-type SuperRangeProps = SliderProps & {
-  id?: string;
-};
-
-const SuperRange: React.FC<SuperRangeProps> = ({ id, value, ...restProps }) => {
+const SuperRange: React.FC<SliderProps> = (props) => {
   return (
-    <div data-testid={`${id}-container`}>
-      {/* id вешаем прямо на Slider, чтобы Cypress тянул правильный элемент */}
-      <Slider
-        id={id}
-        value={value}
-        {...restProps}
-        componentsProps={{
-          thumb: {
-            "aria-label": "slider-thumb",
-            ...({ "data-testid": `${id}-thumb` } as any),
-          },
-        }}
-        sx={{
-          width: 300,
-          height: 4,
-          color: "#52af77",
-          "& .MuiSlider-thumb": {
-            height: 20,
-            width: 20,
-            backgroundColor: "#fff",
-            border: "2px solid #52af77",
-            boxShadow: "none",
-            transition: 'none',
-          },
-          "& .MuiSlider-track": {
-            transition: 'none', 
-            border: "none",
-            backgroundColor: "#52af77",
-          },
-          "& .MuiSlider-rail": {
-            opacity: 1,
-            backgroundColor: "#e0e0e0",
-          },
-        }}
-      />
-    </div>
+    <Slider
+      sx={{
+        color: "#00FF66",
+        height: 4,
+        "& .MuiSlider-thumb": {
+          height: 18,
+          width: 18,
+          backgroundColor: "#fff",
+          border: "2px solid #00FF66",
+          boxShadow: "0 0 0 4px rgba(0,255,102,0.15)",
+        },
+        "& .MuiSlider-rail": {
+          opacity: 1,
+          backgroundColor: "#bfc2c7",
+        },
+        "& .MuiSlider-track": {
+          backgroundColor: "#00FF66",
+        },
+      }}
+      {...props}
+    />
   );
 };
 
