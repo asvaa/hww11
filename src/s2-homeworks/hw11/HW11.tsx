@@ -10,12 +10,13 @@ function HW11() {
   const change = (_: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
       // Double slider logic
-      if (value[0] !== value1) setValue1(value[0]);
-      if (value[1] !== value2) setValue2(value[1]);
+      setValue1(value[0]);
+      setValue2(value[1]);
     } else {
       // Single slider logic
-      if (value !== value1) setValue1(value);
-      if (value > value2) setValue2(value); // keep value2 >= value1
+      const difference = value2 - value1
+      setValue1(value);
+      setValue2(value + difference);
     }
   };
 
