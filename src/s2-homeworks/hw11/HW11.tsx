@@ -7,17 +7,15 @@ function HW11() {
   const [value1, setValue1] = useState(0);
   const [value2, setValue2] = useState(100);
 
-  const changeSingle = (_: Event, value: number | number[]) => {
-    if (!Array.isArray(value)) {
-      setValue1(value);
-      if (value > value2) setValue2(value);
-    }
-  };
-
-  const changeDouble = (_: Event, value: number | number[]) => {
+  const change = (_: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
-      setValue1(value[0]);
-      setValue2(value[1]);
+      // Double slider logic
+      if (value[0] !== value1) setValue1(value[0]);
+      if (value[1] !== value2) setValue2(value[1]);
+    } else {
+      // Single slider logic
+      if (value !== value1) setValue1(value);
+      if (value > value2) setValue2(value); // keep value2 >= value1
     }
   };
 
@@ -35,7 +33,7 @@ function HW11() {
               value={value1}
               min={0}
               max={100}
-              onChange={changeSingle}
+              onChange={change}
             />
           </div>
           <div className={s.wrapper}>
@@ -47,7 +45,7 @@ function HW11() {
               value={[value1, value2]}
               min={0}
               max={100}
-              onChange={changeDouble}
+              onChange={change}
             />
             <span id={"hw11-value-2"} className={s.number}>
               {value2}
