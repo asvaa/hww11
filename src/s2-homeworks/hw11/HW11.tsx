@@ -16,7 +16,7 @@ function HW11() {
       // Single slider logic
       const difference = value2 - value1
       setValue1(value);
-      setValue2(value + difference);
+      setValue2(value + difference >= 100 ? 100 : value + difference);
     }
   };
 
