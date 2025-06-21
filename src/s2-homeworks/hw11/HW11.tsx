@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import s from "./HW11.module.css";
 import s2 from "../../s1-main/App.module.css";
-import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
-
-/*
- * 1 - передать значения в оба слайдера
- * 2 - дописать типы и логику функции change
- * 3 - сделать стили в соответствии с дизайном
- * */
 
 function HW11() {
   const [value1, setValue1] = useState(0);
   const [value2, setValue2] = useState(100);
 
-  const change = (_: Event, value: number | number[]) => {
+  const changeSingle = (_: Event, value: number | number[]) => {
+    if (!Array.isArray(value)) {
+      setValue1(value);
+      if (value > value2) setValue2(value);
+    }
+  };
+
+  const changeDouble = (_: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
       setValue1(value[0]);
       setValue2(value[1]);
-    } else {
-      setValue1(value);
     }
   };
 
@@ -37,7 +35,7 @@ function HW11() {
               value={value1}
               min={0}
               max={100}
-              onChange={change}
+              onChange={changeSingle}
             />
           </div>
           <div className={s.wrapper}>
@@ -49,7 +47,7 @@ function HW11() {
               value={[value1, value2]}
               min={0}
               max={100}
-              onChange={change}
+              onChange={changeDouble}
             />
             <span id={"hw11-value-2"} className={s.number}>
               {value2}
