@@ -4,8 +4,10 @@ import { Slider, SliderProps } from '@mui/material'
 const SuperRange: React.FC<SliderProps> = (props) => {
     return (
         <Slider
+            valueLabelDisplay="auto"
+            disableSwap
             sx={{
-                color: '#00FF66', // основной цвет трека
+                color: '#00FF66',
                 height: 4,
                 '& .MuiSlider-thumb': {
                     height: 18,
@@ -22,9 +24,7 @@ const SuperRange: React.FC<SliderProps> = (props) => {
                     backgroundColor: '#00FF66',
                 },
             }}
-            valueLabelDisplay="auto"
-            disableSwap
-            {...props} // пробрасываем все пропсы, включая value, onChange, min, max
+            {...props}
         />
     )
 }
