@@ -3,13 +3,12 @@ import { Slider, SliderProps } from '@mui/material'
 
 const SuperRange: React.FC<SliderProps> = ({ id, ...props }) => {
     return (
-        <div id={id} style={{ position: 'relative', width: '100%' }}>
+        <div id={id} style={{ width: '100%', position: 'relative' }}>
             <Slider
                 {...props}
                 valueLabelDisplay="auto"
                 disableSwap
                 sx={{
-                    position: 'absolute', // ✅ заставляем использовать style.left
                     width: '100%',
                     color: '#00FF66',
                     height: 4,
