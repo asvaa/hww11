@@ -17,9 +17,7 @@ function HW11() {
   const [value2, setValue2] = useState(80);
 
   const handleSingleChange = (_: Event, value: number | number[]) => {
-    if (!Array.isArray(value)) {
-      setValue1(value);
-    }
+    if (!Array.isArray(value)) setValue1(value);
   };
 
   const handleDoubleChange = (_: Event, value: number | number[]) => {
