@@ -4,19 +4,19 @@ import s2 from "../../s1-main/App.module.css";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
-  const [value1, setValue1] = useState(0);
-  const [value2, setValue2] = useState(100);
+  const [value1, setValue1] = useState(25); // было 0
+  const [value2, setValue2] = useState(75); // было 100
 
-  const change = (_: Event, value: number | number[]) => {
+  const handleSingleChange = (_: Event, value: number | number[]) => {
+    if (!Array.isArray(value)) {
+      setValue1(value);
+    }
+  };
+
+  const handleDoubleChange = (_: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
-      // Double slider logic
       setValue1(value[0]);
       setValue2(value[1]);
-    } else {
-      // Single slider logic
-      const difference = value2 - value1
-      setValue1(value);
-      setValue2(value + difference >= 100 ? 100 : value + difference);
     }
   };
 
@@ -34,7 +34,7 @@ function HW11() {
               value={value1}
               min={0}
               max={100}
-              onChange={change}
+              onChange={handleSingleChange}
             />
           </div>
           <div className={s.wrapper}>
@@ -46,7 +46,7 @@ function HW11() {
               value={[value1, value2]}
               min={0}
               max={100}
-              onChange={change}
+              onChange={handleDoubleChange}
             />
             <span id={"hw11-value-2"} className={s.number}>
               {value2}
