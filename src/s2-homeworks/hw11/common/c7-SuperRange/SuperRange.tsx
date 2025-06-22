@@ -5,25 +5,26 @@ const SuperRange: React.FC<SliderProps> = (props) => {
     return (
         <Slider
             sx={{
-                color: '#1976d2', // основной цвет ползунка (пример)
-                height: 6,
+                color: '#00FF66', // основной цвет трека
+                height: 4,
                 '& .MuiSlider-thumb': {
-                    height: 24,
-                    width: 24,
+                    height: 18,
+                    width: 18,
                     backgroundColor: '#fff',
-                    border: '2px solid #1976d2',
-                    boxShadow: '0 0 0 4px rgba(25, 118, 210, 0.16)',
-                    '&:focus, &:hover, &.Mui-active': {
-                        boxShadow: '0 0 0 8px rgba(25, 118, 210, 0.24)',
-                    },
+                    border: '2px solid #00FF66',
+                    boxShadow: '0 0 0 4px rgba(0,255,102,0.15)',
                 },
                 '& .MuiSlider-rail': {
-                    opacity: 0.28,
+                    opacity: 1,
                     backgroundColor: '#bfc2c7',
                 },
-                borderRadius: 3,
+                '& .MuiSlider-track': {
+                    backgroundColor: '#00FF66',
+                },
             }}
-            {...props} // обязательно на последнем месте!
+            valueLabelDisplay="auto"
+            disableSwap
+            {...props} // пробрасываем все пропсы, включая value, onChange, min, max
         />
     )
 }
