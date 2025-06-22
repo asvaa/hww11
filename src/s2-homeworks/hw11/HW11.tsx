@@ -4,31 +4,27 @@ import s2 from "../../s1-main/App.module.css";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
-  // Начальные значения для прохождения тестов
-  const [value1, setValue1] = useState(50); // одиночный и левый двойной
-  const [value2, setValue2] = useState(80); // правый двойной
+  const [value1, setValue1] = useState(0);
+  const [value2, setValue2] = useState(100);
 
-  // Обработчик для одиночного слайдера
-  const handleSingleChange = (_: Event, value: number | number[]) => {
-    if (!Array.isArray(value)) {
-      setValue1(value);
-    }
-  };
-
-  // Обработчик для двойного слайдера
-  const handleDoubleChange = (_: Event, value: number | number[]) => {
+  const change = (_: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
+      // Double slider logic
       setValue1(value[0]);
       setValue2(value[1]);
+    } else {
+      // Single slider logic
+      const difference = value2 - value1
+      setValue1(value);
+      setValue2(value + difference >= 100 ? 100 : value + difference);
     }
   };
 
   return (
     <div id={"hw11"}>
-      <div className={s2.hwTitle}>Homework №11</div>
+      <div className={s2.hwTitle}>Homework #11</div>
       <div className={s2.hw}>
         <div className={s.container}>
-          {/* Одиночный слайдер */}
           <div className={s.wrapper}>
             <span id={"hw11-value"} className={s.number}>
               {value1}
@@ -38,11 +34,9 @@ function HW11() {
               value={value1}
               min={0}
               max={100}
-              onChange={handleSingleChange}
+              onChange={change}
             />
           </div>
-
-          {/* Двойной слайдер */}
           <div className={s.wrapper}>
             <span id={"hw11-value-1"} className={s.number}>
               {value1}
@@ -52,7 +46,7 @@ function HW11() {
               value={[value1, value2]}
               min={0}
               max={100}
-              onChange={handleDoubleChange}
+              onChange={change}
             />
             <span id={"hw11-value-2"} className={s.number}>
               {value2}

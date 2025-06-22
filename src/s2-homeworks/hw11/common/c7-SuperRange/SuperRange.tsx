@@ -1,33 +1,31 @@
-import React from "react";
-import { Slider, SliderProps } from "@mui/material";
+import React from 'react'
+import { Slider, SliderProps } from '@mui/material'
 
-const SuperRange: React.FC<SliderProps> = ({ id, ...props }) => {
-  return (
-    <Slider
-      id={id} // переместили id на сам Slider
-      {...props}
-      valueLabelDisplay="auto"
-      disableSwap
-      sx={{
-        color: "#00FF66",
-        height: 4,
-        "& .MuiSlider-thumb": {
-          height: 18,
-          width: 18,
-          backgroundColor: "#fff",
-          border: "2px solid #00FF66",
-          boxShadow: "0 0 0 4px rgba(0,255,102,0.15)",
-        },
-        "& .MuiSlider-rail": {
-          opacity: 1,
-          backgroundColor: "#bfc2c7",
-        },
-        "& .MuiSlider-track": {
-          backgroundColor: "#00FF66",
-        },
-      }}
-    />
-  );
-};
+const SuperRange: React.FC<SliderProps> = (props) => {
+    return (
+        <Slider
+            sx={{
+                color: '#1976d2', // основной цвет ползунка (пример)
+                height: 6,
+                '& .MuiSlider-thumb': {
+                    height: 24,
+                    width: 24,
+                    backgroundColor: '#fff',
+                    border: '2px solid #1976d2',
+                    boxShadow: '0 0 0 4px rgba(25, 118, 210, 0.16)',
+                    '&:focus, &:hover, &.Mui-active': {
+                        boxShadow: '0 0 0 8px rgba(25, 118, 210, 0.24)',
+                    },
+                },
+                '& .MuiSlider-rail': {
+                    opacity: 0.28,
+                    backgroundColor: '#bfc2c7',
+                },
+                borderRadius: 3,
+            }}
+            {...props} // обязательно на последнем месте!
+        />
+    )
+}
 
-export default SuperRange;
+export default SuperRange
