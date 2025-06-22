@@ -1,21 +1,7 @@
 import React, { useState } from "react";
 import s from "./HW11.module.css";
 import s2 from "../../s1-main/App.module.css";
-import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
-
-/*
- * 1 - передать значения в оба слайдера
- * 2 - дописать типы и логику функции change
- * 3 - сделать стили в соответствии с дизайном
- * */
-
-// function HW11() {
-//   // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
-//   const [value1, setValue1] = useState(restoreState<number>("hw11-value1", 0));
-//   const [value2, setValue2] = useState(
-//     restoreState<number>("hw11-value2", 100)
-//   );
 
 function HW11() {
   const [value1, setValue1] = useState(0);
@@ -23,17 +9,14 @@ function HW11() {
 
   const change = (_: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
-      // изменение двойного слайдера — отлавливаем, когда двигается именно второй ползунок
-      const [newVal1, newVal2] = value;
-      if (newVal1 !== value1 || newVal2 !== value2) {
-        setValue1(newVal1);
-        setValue2(newVal2);
-      }
+      // двойной слайдер: можно менять оба маркера независимо
+      setValue1(value[0]);
+      setValue2(value[1]);
     } else {
-      // изменение одиночного — сдвигаем оба значения синхронно
+      // одиночный слайдер: двигаем оба маркера синхронно
       const range = value2 - value1;
       const newVal1 = value;
-      const newVal2 = value + range > 100 ? 100 : value + range;
+      const newVal2 = newVal1 + range > 100 ? 100 : newVal1 + range;
       setValue1(newVal1);
       setValue2(newVal2);
     }
