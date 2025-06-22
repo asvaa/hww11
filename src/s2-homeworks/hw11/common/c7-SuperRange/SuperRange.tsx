@@ -1,9 +1,11 @@
 import React from 'react'
 import { Slider, SliderProps } from '@mui/material'
 
-const SuperRange: React.FC<SliderProps> = (props) => {
+const SuperRange: React.FC<SliderProps> = ({ id, ...props }) => {
     return (
         <Slider
+            id={id} // id важен для Cypress
+            {...props}
             valueLabelDisplay="auto"
             disableSwap
             sx={{
@@ -24,7 +26,6 @@ const SuperRange: React.FC<SliderProps> = (props) => {
                     backgroundColor: '#00FF66',
                 },
             }}
-            {...props}
         />
     )
 }
