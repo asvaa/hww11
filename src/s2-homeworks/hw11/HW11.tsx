@@ -10,29 +10,41 @@ import SuperRange from "./common/c7-SuperRange/SuperRange";
  * 3 - сделать стили в соответствии с дизайном
  * */
 
+// function HW11() {
+//   // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
+//   const [value1, setValue1] = useState(restoreState<number>("hw11-value1", 0));
+//   const [value2, setValue2] = useState(
+//     restoreState<number>("hw11-value2", 100)
+//   );
+
 function HW11() {
-  // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
+  const [value1, setValue1] = useState(0);
+  const [value2, setValue2] = useState(100);
 
-  const [value1, setValue1] = useState(50);
-  const [value2, setValue2] = useState(80);
-
-  const handleSingleChange = (_: Event, value: number | number[]) => {
-    if (!Array.isArray(value)) setValue1(value);
-  };
-
-  const handleDoubleChange = (_: Event, value: number | number[]) => {
+  const change = (_: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
-      setValue1(value[0]);
-      setValue2(value[1]);
+      // изменение двойного слайдера — отлавливаем, когда двигается именно второй ползунок
+      const [newVal1, newVal2] = value;
+      if (newVal1 !== value1 || newVal2 !== value2) {
+        setValue1(newVal1);
+        setValue2(newVal2);
+      }
+    } else {
+      // изменение одиночного — сдвигаем оба значения синхронно
+      const range = value2 - value1;
+      const newVal1 = value;
+      const newVal2 = value + range > 100 ? 100 : value + range;
+      setValue1(newVal1);
+      setValue2(newVal2);
     }
   };
 
   return (
     <div id="hw11">
-      <div className={s2.hwTitle}>Homework № 11</div>
+      <div className={s2.hwTitle}>Hometask № 11</div>
       <div className={s2.hw}>
         <div className={s.container}>
-          {/* Одиночный слайдер */}
+          {/* одиночный слайдер */}
           <div className={s.wrapper}>
             <span id="hw11-value" className={s.number}>
               {value1}
@@ -42,11 +54,11 @@ function HW11() {
               value={value1}
               min={0}
               max={100}
-              onChange={handleSingleChange}
+              onChange={change}
             />
           </div>
 
-          {/* Двойной слайдер */}
+          {/* двойной слайдер */}
           <div className={s.wrapper}>
             <span id="hw11-value-1" className={s.number}>
               {value1}
@@ -56,7 +68,7 @@ function HW11() {
               value={[value1, value2]}
               min={0}
               max={100}
-              onChange={handleDoubleChange}
+              onChange={change}
             />
             <span id="hw11-value-2" className={s.number}>
               {value2}
