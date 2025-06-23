@@ -20,18 +20,14 @@ function HW11() {
   const change = (event: any, value: any) => {
     // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
     if (!Array.isArray(value)) {
+      // Одиночный слайдер
       setValue1(value);
-      setValue2((prev) => (value > prev ? value : prev));
+      setValue2((prev) => (value > prev ? value : prev)); // value2 >= value1 всегда!
     } else {
-      // value[0] — всегда левый ползунок (он не должен быть больше value[1])
-      if (value[0] !== value1) {
-        // Двигают левый ползунок двойного — меняем value1 и value2
-        setValue1(value[0]);
-        setValue2(value[1]);
-      } else {
-        // Двигают только правый ползунок двойного — меняется только value2
-        setValue2(value[1]);
-      }
+      // Двойной слайдер
+      if (value[0] > value[1]) return; // защитимся от некорректных значений
+      setValue1(value[0]);
+      setValue2(value[1]);
     }
   };
 
