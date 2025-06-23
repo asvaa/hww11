@@ -16,43 +16,46 @@ function HW11() {
 
   const handleDoubleChange = (event: unknown, newValue: number | number[]) => {
     if (Array.isArray(newValue)) {
-      // Гарантируем, что первый ползунок не превышает второй
-      const [val1, val2] = newValue;
-      setValue1(Math.min(val1, val2));
-      setValue2(Math.max(val1, val2));
+      setValue1(newValue[0]);
+      setValue2(newValue[1]);
     }
   };
 
   return (
-    <div id={"hw11"}>
+    <div id={"hw11"} data-testid="hw11">
       <div className={s2.hwTitle}>Homework #11</div>
 
       <div className={s2.hw}>
         <div className={s.container}>
-          <div className={s.wrapper}>
-            <span id={"hw11-value"} className={s.number}>
+          <div className={s.wrapper} data-testid="single-slider-wrapper">
+            <span id={"hw11-value"} className={s.number} data-testid="hw11-value">
               {value1}
             </span>
-            <SuperRange
-              value={value1}
-              onChange={handleSingleChange}
-              min={0}
-              max={100}
-              step={1}
-            />
+            <div id="hw11-single-slider" data-testid="single-slider">
+              <SuperRange
+                value={value1}
+                onChange={handleSingleChange}
+                min={0}
+                max={100}
+                step={1}
+              />
+            </div>
           </div>
-          <div className={s.wrapper}>
-            <span id={"hw11-value-1"} className={s.number}>
+
+          <div className={s.wrapper} data-testid="double-slider-wrapper">
+            <span id={"hw11-value-1"} className={s.number} data-testid="hw11-value-1">
               {value1}
             </span>
-            <SuperRange
-              value={[value1, value2]}
-              onChange={handleDoubleChange}
-              min={0}
-              max={100}
-              step={1}
-            />
-            <span id={"hw11-value-2"} className={s.number}>
+            <div id="hw11-double-slider" data-testid="double-slider">
+              <SuperRange
+                value={[value1, value2]}
+                onChange={handleDoubleChange}
+                min={0}
+                max={100}
+                step={1}
+              />
+            </div>
+            <span id={"hw11-value-2"} className={s.number} data-testid="hw11-value-2">
               {value2}
             </span>
           </div>

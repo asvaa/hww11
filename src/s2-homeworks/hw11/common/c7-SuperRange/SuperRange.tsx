@@ -5,20 +5,20 @@ const SuperRange: React.FC<SliderProps> = (props) => {
   return (
     <Slider
       sx={{
-        width: "90%",
-        margin: "0 5%",
+        width: "100%",
         color: "#00FF00",
         height: 4,
+        padding: "15px 0",
         "& .MuiSlider-thumb": {
           height: 20,
           width: 20,
           backgroundColor: "#fff",
           border: "2px solid currentColor",
-          "&:hover": {
-            boxShadow: "0 0 0 8px rgba(0, 255, 0, 0.16)",
+          "&:hover, &.Mui-focusVisible": {
+            boxShadow: "0 0 0 6px rgba(0, 255, 0, 0.16)",
           },
           "&.Mui-active": {
-            boxShadow: "0 0 0 14px rgba(0, 255, 0, 0.16)",
+            boxShadow: "0 0 0 10px rgba(0, 255, 0, 0.16)",
           },
         },
         "& .MuiSlider-rail": {
