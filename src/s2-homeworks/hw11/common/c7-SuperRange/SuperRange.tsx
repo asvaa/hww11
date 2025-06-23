@@ -1,4 +1,4 @@
-import { Slider, SliderProps } from "@mui/material";
+import Slider, {  SliderProps } from "@mui/material/Slider";
 
 const SuperRange: React.FC<SliderProps> = (props) => {
   return (
