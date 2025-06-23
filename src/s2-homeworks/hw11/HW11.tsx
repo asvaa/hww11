@@ -12,23 +12,17 @@ import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
   // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
-//   const [value1, setValue1] = useState(restoreState<number>("hw11-value1", 0));
-//   const [value2, setValue2] = useState(
-//     restoreState<number>("hw11-value2", 100)
-//   );
-const [value1, setValue1] = useState(0);
-const [value2, setValue2] = useState(100);
-
+  const [value1, setValue1] = useState(restoreState<number>("hw11-value1", 0));
+  const [value2, setValue2] = useState(
+    restoreState<number>("hw11-value2", 100)
+  );
 
   const change = (event: any, value: any) => {
     // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
     if (!Array.isArray(value)) {
-      // Одиночный слайдер
       setValue1(value);
-      setValue2((prev) => (value > prev ? value : prev)); // value2 >= value1 всегда!
+      setValue2((prev) => (value > prev ? value : prev));
     } else {
-      // Двойной слайдер
-      if (value[0] > value[1]) return; // защитимся от некорректных значений
       setValue1(value[0]);
       setValue2(value[1]);
     }
