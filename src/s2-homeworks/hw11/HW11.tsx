@@ -1,59 +1,66 @@
 import React, { useState } from "react";
 import s from "./HW11.module.css";
 import s2 from "../../s1-main/App.module.css";
+import { restoreState } from "../hw06/localStorage/localStorage";
 import SuperRange from "./common/c7-SuperRange/SuperRange";
 
-function HW11() {
-  const [value1, setValue1] = useState(0);
-  const [value2, setValue2] = useState(100);
+/*
+ * 1 - передать значения в оба слайдера
+ * 2 - дописать типы и логику функции change
+ * 3 - сделать стили в соответствии с дизайном
+ * */
 
-  const change = (_: Event, value: number | number[]) => {
-    if (Array.isArray(value)) {
-      // двойной слайдер: можно менять оба маркера независимо
-      setValue1(value[0]);
-      setValue2(value[1]);
+function HW11() {
+  // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
+  const [value1, setValue1] = useState(restoreState<number>("hw11-value1", 0));
+  const [value2, setValue2] = useState(
+    restoreState<number>("hw11-value2", 100)
+  );
+
+  const change = (event: any, value: any) => {
+    // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
+    if (!Array.isArray(value)) {
+      setValue1(value);
+      setValue2((prev) => (value > prev ? value : prev));
     } else {
-      // одиночный слайдер: двигаем оба маркера синхронно
-      const range = value2 - value1;
-      const newVal1 = value;
-      const newVal2 = newVal1 + range > 100 ? 100 : newVal1 + range;
-      setValue1(newVal1);
-      setValue2(newVal2);
+      // value[0] — всегда левый ползунок (он не должен быть больше value[1])
+      if (value[0] !== value1) {
+        // Двигают левый ползунок двойного — меняем value1 и value2
+        setValue1(value[0]);
+        setValue2(value[1]);
+      } else {
+        // Двигают только правый ползунок двойного — меняется только value2
+        setValue2(value[1]);
+      }
     }
   };
 
   return (
-    <div id="hw11">
-      <div className={s2.hwTitle}>Hometask № 11</div>
+    <div id={"hw11"}>
+      <div className={s2.hwTitle}>Homework #11</div>
+
       <div className={s2.hw}>
         <div className={s.container}>
-          {/* одиночный слайдер */}
           <div className={s.wrapper}>
-            <span id="hw11-value" className={s.number}>
+            <span id={"hw11-value"} className={s.number}>
               {value1}
             </span>
             <SuperRange
-              id="hw11-single-slider"
+              id={"hw11-single-slider"}
               value={value1}
-              min={0}
-              max={100}
               onChange={change}
             />
           </div>
-
-          {/* двойной слайдер */}
           <div className={s.wrapper}>
-            <span id="hw11-value-1" className={s.number}>
+            <span id={"hw11-value-1"} className={s.number}>
               {value1}
             </span>
             <SuperRange
-              id="hw11-double-slider"
+              id={"hw11-double-slider"}
               value={[value1, value2]}
-              min={0}
-              max={100}
               onChange={change}
             />
-            <span id="hw11-value-2" className={s.number}>
+            <span id={"hw11-value-2"} className={s.number}>
               {value2}
             </span>
           </div>
