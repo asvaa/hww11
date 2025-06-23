@@ -1,18 +1,15 @@
 import React from "react";
 import Slider, { SliderProps } from "@mui/material/Slider";
 
-const SuperRange: React.FC<SliderProps> = ({ value = [0, 100], ...props }) => {
+const SuperRange: React.FC<SliderProps> = ({ sx, ...props }) => {
   return (
     <Slider
       sx={{
         width: 300,
-        color: "primary",
-        margin: "20px 0",
+        color: "#00CC22",
+        ...sx,
       }}
-      value={value}
       {...props}
-      valueLabelDisplay="auto"
-      aria-labelledby="range-slider"
     />
   );
 };
