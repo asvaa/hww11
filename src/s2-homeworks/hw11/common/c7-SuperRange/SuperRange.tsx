@@ -5,45 +5,30 @@ const SuperRange: React.FC<SliderProps> = (props) => {
   return (
     <Slider
       sx={{
+        width: "90%",
+        margin: "0 5%",
         color: "#00FF00",
-        height: 8,
+        height: 4,
         "& .MuiSlider-thumb": {
-          height: 24,
-          width: 24,
+          height: 20,
+          width: 20,
           backgroundColor: "#fff",
           border: "2px solid currentColor",
-          "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
+          "&:hover": {
             boxShadow: "0 0 0 8px rgba(0, 255, 0, 0.16)",
           },
-          "&:before": {
-            display: "none",
+          "&.Mui-active": {
+            boxShadow: "0 0 0 14px rgba(0, 255, 0, 0.16)",
           },
-        },
-        "& .MuiSlider-valueLabel": {
-          lineHeight: 1.2,
-          fontSize: 12,
-          background: "unset",
-          padding: 0,
-          width: 32,
-          height: 32,
-          borderRadius: "50% 50% 50% 0",
-          backgroundColor: "#00FF00",
-          transformOrigin: "bottom left",
-          transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-          "&:before": { display: "none" },
-          "&.MuiSlider-valueLabelOpen": {
-            transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-          },
-          "& > *": {
-            transform: "rotate(45deg)",
-          },
-        },
-        "& .MuiSlider-track": {
-          border: "none",
         },
         "& .MuiSlider-rail": {
-          opacity: 0.5,
-          backgroundColor: "#bfbfbf",
+          color: "#d8d8d8",
+          opacity: 1,
+          height: 4,
+        },
+        "& .MuiSlider-track": {
+          color: "#00FF00",
+          height: 4,
         },
       }}
       {...props}

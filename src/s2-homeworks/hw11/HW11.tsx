@@ -8,16 +8,18 @@ function HW11() {
   const [value1, setValue1] = useState(restoreState<number>("hw11-value1", 0));
   const [value2, setValue2] = useState(restoreState<number>("hw11-value2", 100));
 
-  const handleSingleChange = (event: Event, newValue: number | number[]) => {
+  const handleSingleChange = (event: unknown, newValue: number | number[]) => {
     if (typeof newValue === "number") {
       setValue1(newValue);
     }
   };
 
-  const handleDoubleChange = (event: Event, newValue: number | number[]) => {
+  const handleDoubleChange = (event: unknown, newValue: number | number[]) => {
     if (Array.isArray(newValue)) {
-      setValue1(newValue[0]);
-      setValue2(newValue[1]);
+      // Гарантируем, что первый ползунок не превышает второй
+      const [val1, val2] = newValue;
+      setValue1(Math.min(val1, val2));
+      setValue2(Math.max(val1, val2));
     }
   };
 
@@ -32,11 +34,11 @@ function HW11() {
               {value1}
             </span>
             <SuperRange
-              id={"hw11-single-slider"}
               value={value1}
               onChange={handleSingleChange}
-              valueLabelDisplay="auto"
-              aria-labelledby="single-slider"
+              min={0}
+              max={100}
+              step={1}
             />
           </div>
           <div className={s.wrapper}>
@@ -44,11 +46,11 @@ function HW11() {
               {value1}
             </span>
             <SuperRange
-              id={"hw11-double-slider"}
               value={[value1, value2]}
               onChange={handleDoubleChange}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
+              min={0}
+              max={100}
+              step={1}
             />
             <span id={"hw11-value-2"} className={s.number}>
               {value2}
