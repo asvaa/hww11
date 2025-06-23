@@ -41,20 +41,26 @@ function HW11() {
               {value1}
             </span>
             <SuperRange
-              id={"hw11-single-slider"}
+              id="hw11-single-slider"
               value={value1}
-              onChange={change}
+              onChange={(event, value) => {
+                setValue1(value as number);
+                setValue2((prev) =>
+                  (value as number) > prev ? (value as number) : prev
+                );
+              }}
             />
-          </div>
-          <div className={s.wrapper}>
-            <span id={"hw11-value-1"} className={s.number}>
-              {value1}
-            </span>
             <SuperRange
-              id={"hw11-double-slider"}
+              id="hw11-double-slider"
               value={[value1, value2]}
-              onChange={change}
+              onChange={(event, value) => {
+                if (Array.isArray(value)) {
+                  setValue1(value[0]);
+                  setValue2(value[1]);
+                }
+              }}
             />
+
             <span id={"hw11-value-2"} className={s.number}>
               {value2}
             </span>
