@@ -6,19 +6,15 @@ import SuperRange from "./common/c7-SuperRange/SuperRange";
 
 function HW11() {
   const [value1, setValue1] = useState(restoreState<number>("hw11-value1", 0));
-  const [value2, setValue2] = useState(
-    restoreState<number>("hw11-value2", 100)
-  );
+  const [value2, setValue2] = useState(restoreState<number>("hw11-value2", 100));
 
-  // Изменение для одиночного слайдера
-  const handleSingleSliderChange = (_e: Event, newValue: number | number[]) => {
+  const handleSingleChange = (event: Event, newValue: number | number[]) => {
     if (typeof newValue === "number") {
       setValue1(newValue);
     }
   };
 
-  // Изменение для двойного слайдера
-  const handleDoubleSliderChange = (_e: Event, newValue: number | number[]) => {
+  const handleDoubleChange = (event: Event, newValue: number | number[]) => {
     if (Array.isArray(newValue)) {
       setValue1(newValue[0]);
       setValue2(newValue[1]);
@@ -38,9 +34,9 @@ function HW11() {
             <SuperRange
               id={"hw11-single-slider"}
               value={value1}
-              onChange={handleSingleSliderChange}
-              min={0}
-              max={100}
+              onChange={handleSingleChange}
+              valueLabelDisplay="auto"
+              aria-labelledby="single-slider"
             />
           </div>
           <div className={s.wrapper}>
@@ -50,9 +46,9 @@ function HW11() {
             <SuperRange
               id={"hw11-double-slider"}
               value={[value1, value2]}
-              onChange={handleDoubleSliderChange}
-              min={0}
-              max={100}
+              onChange={handleDoubleChange}
+              valueLabelDisplay="auto"
+              aria-labelledby="range-slider"
             />
             <span id={"hw11-value-2"} className={s.number}>
               {value2}
