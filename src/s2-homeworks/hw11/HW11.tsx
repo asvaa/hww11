@@ -31,13 +31,12 @@ function HW11() {
   };
 
   return (
-    <div id={"hw11"}>
+    <div id="hw11">
       <div className={s2.hwTitle}>Homework #11</div>
-
       <div className={s2.hw}>
         <div className={s.container}>
           <div className={s.wrapper}>
-            <span id={"hw11-value"} className={s.number}>
+            <span id="hw11-value" className={s.number}>
               {value1}
             </span>
             <SuperRange
@@ -50,6 +49,11 @@ function HW11() {
                 );
               }}
             />
+          </div>
+          <div className={s.wrapper}>
+            <span id="hw11-value-1" className={s.number}>
+              {value1}
+            </span>
             <SuperRange
               id="hw11-double-slider"
               value={[value1, value2]}
@@ -60,8 +64,7 @@ function HW11() {
                 }
               }}
             />
-
-            <span id={"hw11-value-2"} className={s.number}>
+            <span id="hw11-value-2" className={s.number}>
               {value2}
             </span>
           </div>
