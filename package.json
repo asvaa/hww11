@@ -1,7 +1,7 @@
 {
   "name": "hws2",
   "version": "0.1.0",
-  "private": true,
+  "private": "false",
   "homepage": "https://asvaa.github.io/HW11",
   "dependencies": {
     "@emotion/react": "^11.14.0",
