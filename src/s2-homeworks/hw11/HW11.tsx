@@ -16,7 +16,9 @@ function HW11() {
       setValue2(newValue[1]);
     } else {
       setValue1(newValue);
-      setValue2((prev) => (newValue > prev ? newValue : prev));
+      if (newValue > value2) {
+        setValue2(newValue);
+      }
     }
   };
 
