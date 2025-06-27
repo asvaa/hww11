@@ -13,12 +13,9 @@
 }
 
 .number {
-  display: inline-block;
-  min-width: 32px; /* чтобы "100" не сливался с "50" */
-  margin: 0 8px;
+  min-width: 32px;
+  margin: 0 10px;
   text-align: center;
-  font-size: 16px;
-  color: #222;
-  user-select: none;
-  cursor: default;
+  font-size: 18px;
+  display: inline-block;
 }
